@@ -1,0 +1,127 @@
+     body{
+     font-family: 'Open Sans Extra Bold', sans-serif;
+     font-size =92px
+     margin:0; padding:0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none; border:none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}}
+.navbara{
+  float: left;
+  padding: 0px;
+  color: #e7dfc8;
+  text-decoration: none;
+  background-color: #041434;
+
+}
+.navbar {
+  width: 100%;
+<!--  background-color: #041434;-->
+  overflow: auto;
+}
+
+.navbar a {
+display: inline-block;
+  float: right;
+ padding:1.5rem 2rem;
+ font-size: 1.3rem;
+  color: #e7dfc8;
+  text-decoration:none;
+
+
+}
+body{
+background-color: #041434;
+}
+
+
+@mixin grid($val) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+  gap:1.5rem;
+}
+
+html{
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overflow-x: hidden;
+
+}
+
+header{
+  position: fixed;
+  top:0; left:0; right:0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0 9%;
+  z-index: 10000;
+  background-color: #041434;
+  opacity: 0.9;
+
+
+  .navbar a{
+    display: inline-block;
+    padding:1.5rem 2rem;
+    font-size: 1.7rem;
+    background-color: #ebe2cb;
+
+  }
+}
+@media (min-aspect-ratio: 16/9){
+.navbar{
+width:100%;
+height: auto;
+}
+}
+@media (max-aspect-ratio: 16/9){
+.navbar{
+width:auto;
+height: 100%;
+}
+}
+
+ul{
+
+  float: right;
+ padding:0;
+ font-size: 3rem;
+  border-radius: 25px;
+  background: #de5358;
+  width: 150px;
+}
+menu{
+
+padding: 0;
+  width: 100%;
+
+  }
+
+  .logo{
+  background-color: #041434;
+  }
+mySlides {display:none;}
+
+.myVideo {
+position: absolute;
+top:60px; left:0;
+right: 0;
+bottom: 0;
+z-index: -1;
+
+}
+@media (min-aspect-ratio: 16/9){
+.myVideo{
+width:100%;
+height: auto;
+}
+}
+@media (max-aspect-ratio: 16/9){
+.myVideo{
+width:auto;
+height: 100%;
+}
+}

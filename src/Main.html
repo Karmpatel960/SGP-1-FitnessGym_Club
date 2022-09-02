@@ -5,170 +5,12 @@
     <meta charset="UTF-8">
     <title>FITNESS GYM CLUB</title>
     <link rel="icon" href="photo/fiynessgymclublogotitle.png" type="image/icon type">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
 
-      <style>
-     body{
-     font-family: 'Open Sans Extra Bold', sans-serif;
-     font-size =92px
-     margin:0; padding:0;
-  box-sizing: border-box;
-  text-decoration: none;
-  outline: none; border:none;
-  text-transform: capitalize;
-  transition: all .2s linear;
-}}
-.navbara{
-  float: left;
-  padding: 0px;
-  color: #e7dfc8;
-  text-decoration: none;
 
-}
-.navbar {
-  width: 100%;
-<!--  background-color: #041434;-->
-  overflow: auto;
-}
-
-.navbar a {
-display: inline-block;
-  float: right;
- padding:1.5rem 2rem;
- font-size: 1.3rem;
-  color: #e7dfc8;
-  text-decoration:none;
-
-
-}
-body{
-background-color: #041434;
-}
-
-
-@mixin grid($val) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
-  gap:1.5rem;
-}
-
-html{
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-  overflow-x: hidden;
-
-}
-
-section{
-  padding:5rem 9%;
-}
-
-.heading{
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-
-  &::before{
-    content: '';
-    position: absolute;
-    top:50%; left:0;
-    transform: translateY(-50%);
-    height: .1rem;
-    width: 100%;
-    background: $light-white;
-    z-index: -1;
-  }
-
-  span{
-    font-size: 3rem;
-    color:$red;
-    background: $black;
-    padding:.5rem 1.5rem;
-    border:.1rem solid $light-white;
-    border-radius: .5rem;
-  }
-}
-
-.btn{
-  margin-top: 1rem;
-  display: inline-block;
-  padding:1rem 2.8rem;
-  padding-right: 3rem;
-  background:linear-gradient(130deg, $red 93%, transparent 90%);
-  color:$white;
-  cursor: pointer;
-  font-size: 1.7rem;
-
-  &:hover{
-    transform:scale(1.1);
-  }
-}
-
-.header{
-  position: fixed;
-  top:0; left:0; right:0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding:0 9%;
-  z-index: 10000;
-  background: $black;
-
-  .navbar a{
-    display: inline-block;
-    padding:1.5rem 2rem;
-    font-size: 1.7rem;
-    color:$white;
-
-    &:hover{
-      background: $red;
-    }
-  }
-}
-
-#menu-btn{
-  font-size: 3rem;
-  color:$white;
-  cursor: pointer;
-  display: none;
-}
-
-.home{
-  padding:0;
-  margin-top: 5rem;
-
-  .slide{
-    min-height:70vh;
-    background-size: cover !important;
-    background-position: center !important;
-    padding:2rem 9%;
-    display: flex;
-    align-items: center;
-
-    .content{
-      width:60rem;
-
-    }
-  }
-}
-ul{
-
-  float: right;
- padding:0;
- font-size: 3rem;
-  border-radius: 25px;
-  background: #de5358;
-  width: 150px;
-}
-menu{
-padding: 0;
-  width: 100%;
-  overflow: auto;
-}
-</style>
 </head>
 
 <body>
@@ -181,7 +23,7 @@ padding: 0;
 
     <nav class="navbar">
 
-        <a href="#home">Home</a>
+        <a href="#home" >Home</a>
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
@@ -192,12 +34,46 @@ padding: 0;
             <a  href="#Get Started" >Get Started</a>
         </ul>
     </header>
-    <menu>
-    <a href="#" class="Main"><img src="photo/home-bg-1.jpg" width="1920" alt=""> </a>
-    </menu>
+
 </div>
     </div>
-    </div>
+
+
+
 </div>
+<div class="w3-content w3-section" style="menu">
+
+    <a href="#" class="mySlides" ><video autoplay muted loop playsinline class="myVideo">
+        <source src="photo/Untitled design (11).mp4" type="video/mp4" >
+    </video></a>
+    <a href="#" class="mySlides" ><video autoplay muted loop playsinline class="myVideo">
+        <source src="photo/Eat Sleep, Gym, and Repeat. (3).mp4" type="video/mp4" >
+    </video></a>
+    <a href="#" class="mySlides" ><video autoplay muted loop playsinline class="myVideo">
+        <source src="photo/Eat Sleep, Gym, and Repeat. (4).mp4" type="video/mp4" >
+    </video></a>
+<!--    <a href="#" class="mySlides"><img src="photo/home-bg-2.jpg" width=100%  height = 45% alt=""> </a>-->
+<!--    <a href="#" class="mySlides"><img src="photo/home-bg-3.jpg" width=100% height = 45% alt=""> </a>-->
+
+</div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 3000); // Change image every 2 seconds
+}
+</script>
+
+
 </body>
+
 </html>

@@ -4,22 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>FITNESS GYM CLUB</title>
-    <link rel="icon" href="photo/fiynessgymclublogotitle.png" type="image/icon type">
+    <link rel="icon" href="photo/FGC (1).png" type="image/icon type">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top navbar-custom ">
-    <div class="container">
-<div class="navbar">
-    <header class="header">
+<div class="navbar" >
+    <header class="header" >
     <a href="#" class="logo"><img src="photo/imageedit_1_7997835581.png" width="150" height="50" alt=""> </a>
-    <div id="menu-btn" class="fas fa-bars"></div>
+<!--  <div id="menu-btn" class="fas fa-bars"></div>-->
 
     <nav class="navbar">
 
@@ -33,15 +30,10 @@
         <ul>
             <a  href="#Get Started" >Get Started</a>
         </ul>
+
     </header>
-
 </div>
-    </div>
-
-
-
-</div>
-<div class="w3-content w3-section" style="menu">
+<div class="home"  id="home" style="menu">
 
     <a href="#" class="mySlides" ><video autoplay muted loop playsinline class="myVideo">
         <source src="photo/Untitled design (11).mp4" type="video/mp4" >
@@ -52,9 +44,6 @@
     <a href="#" class="mySlides" ><video autoplay muted loop playsinline class="myVideo">
         <source src="photo/Eat Sleep, Gym, and Repeat. (4).mp4" type="video/mp4" >
     </video></a>
-<!--    <a href="#" class="mySlides"><img src="photo/home-bg-2.jpg" width=100%  height = 45% alt=""> </a>-->
-<!--    <a href="#" class="mySlides"><img src="photo/home-bg-3.jpg" width=100% height = 45% alt=""> </a>-->
-
 </div>
 <script>
 var myIndex = 0;
@@ -69,11 +58,312 @@ function carousel() {
   myIndex++;
   if (myIndex > x.length) {myIndex = 1}
   x[myIndex-1].style.display = "block";
-  setTimeout(carousel, 3000); // Change image every 2 seconds
+  setTimeout(carousel, 3000);
 }
 </script>
+<section class="about" id="about">
+
+    <div class="imag">
+        <img src="photo/about-img.jpg" alt="">
+    </div>
+
+    <div class="content">
+        <span>about us</span>
+        <h3 class="title">Every day is a chance to become better</h3>
+        <p>Gym and Fitness was founded in 2002 as a family owned and operated business specialising in supplying high-quality gym equipment at great prices.Our founders wanted to be the best in the industry and set their minds to doing so!</p>     <div class="box-container">
+            <div class="box">
+                <h3><i class="fas fa-check"></i>body and mind</h3>
+                <p>We believe open, direct and supportive communication is the foundation of any successful organisation.</p>
+            </div>
+            <div class="box">
+                <h3><i class="fas fa-check"></i>healthy life</h3>
+                <p>We’re committed to common goals, with effective communication and our team achieve greater results.</p>
+            </div>
+            <div class="box">
+                <h3><i class="fas fa-check"></i>strategies</h3>
+                <p>We believe we should all take ownership and have the courage to lead change.</p>
+            </div>
+            <div class="box">
+                <h3><i class="fas fa-check"></i>workout</h3>
+                <p>We believe in encouraging, supporting, challenging, learning and growing to be the best!</p>
+            </div>
+        </div>
+<!--        <a href="#" class="btn">read more</a>-->
+    </div>
+
+</section>
+<!--<script src="script.js">-->
+<!--</script>-->
+
+<section class="features" id="features">
+
+    <h1 class="heading"> <span>gym features</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <div class="image">
+                <img src="photo/f-img-1.jpg" alt="">
+            </div>
+            <div class="content">
+                <h3>body building</h3>
+                <p>Our Team will Give you the all Support you nead in making of your Body and Daily review of Your Diet Plan.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+        </div>
+
+        <div class="box second">
+            <div class="image">
+                <img src="photo/Screenshot (321).png" alt="">
+            </div>
+            <div class="content">
+                <h3>FGC Club</h3>
+                <p>This Club will help you to get discount on any order.Also give Community support to discuss and grow with the people</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="image">
+                <img src="photo/f-img-3.jpg" alt="">
+            </div>
+            <div class="content">
+                <h3>gym for women</h3>
+                <p>Women can choose women Trainer to get more comfortable to communicate there daily Diet and Also help to improve your Health. </p>
+                <a href="#" class="btn">read more</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<br>
+<br>
+
+<section class="pricing" id="pricing">
+
+    <div class="information">
+        <span>pricing plan</span>
+        <h3>affordable pricing plan for your</h3>
+        <p>If you're trying to lose weight, a weight loss workout plan can be very helpful. Getting regular exercise can help you meet your goals in a healthy, sustainable way</p>
+        <p> <i class="fas fa-check"></i> cardio exercise </p>
+        <p> <i class="fas fa-check"></i> weight lifting </p>
+        <p> <i class="fas fa-check"></i> diet plans </p>
+        <p> <i class="fas fa-check"></i> overall results </p>
+<!--        <a href="#" class="btn">all pricing</a>-->
+    </div>
+
+    <div class="plan basic">
+        <h3>basic plan</h3>
+        <div class="price"><span>₹</span>399<span>/month</span></div>
+        <div class="list">
+            <p> <i class="fa-sharp fa-solid fa-xmark"></i> personal training </p>
+            <p> <i class="fas fa-check"></i> cardio exercise </p>
+            <p> <i class="fas fa-check"></i> weight lifting </p>
+            <p>  <i class="fa-sharp fa-solid fa-xmark"></i> diet plans </p>
+            <p>  <i class="fa-sharp fa-solid fa-xmark"></i> overall results </p>
+        </div>
+        <a href="#" class="btn">get started</a>
+    </div>
+
+    <div class="plan">
+        <h3>premium plan</h3>
+        <div class="price"><span>₹</span>999<span>/month</span></div>
+        <div class="list">
+            <p> <i class="fas fa-check"></i> personal training </p>
+            <p> <i class="fas fa-check"></i> cardio exercise </p>
+            <p> <i class="fas fa-check"></i> weight lifting </p>
+            <p> <i class="fas fa-check"></i> diet plans </p>
+            <p> <i class="fas fa-check"></i> overall results </p>
+        </div>
+        <a href="#" class="btn">get started</a>
+    </div>
+
+</section>
+
+<section class="trainers" id="trainers">
+
+    <h1 class="heading"> <span>expert trainers</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="photo/trainer-1.jpg" alt="">
+            <div class="content">
+                <span>expert trainer</span>
+                <h3>john deo</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="photo/trainer-2.jpg" alt="">
+            <div class="content">
+                <span>expert trainer</span>
+                <h3>julia y</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="photo/trainer-3.jpg" alt="">
+            <div class="content">
+                <span>expert trainer</span>
+                <h3>Kevin Morgado</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
 
 
+    </div>
+
+</section>
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>daily posts</span> </h1>
+
+    <div class="swiper blogs-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="photo/blog-1.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="link"> <a href="#">by Expert Trainer</a> <span>|</span> <a href="#">21st may, 2022</a> </div>
+                    <h3>Is A Calorie Really A Calorie?</h3>
+                    <p>If you ever really need proof about how the human body works, find your way into a metabolic chamber. There are about 30 of them in the world and they cost millions of dollars. They use the best technology to  measure every single ounce of energy that is either consumed or burned. </p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="photo/blog-2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="link"> <a href="#">by Expert Trainer</a> <span>|</span> <a href="#">21st may, 2022</a> </div>
+                    <h3>The Right Way to Squat</h3>
+                    <p>Some things you can’t debate, such as whether it’s a crime to hide a raisin cookie in a batch of chocolate chips. Other acts are a little less certain. And, when it comes to exercise movement, there’s no shortage of disagreement about what movements are safe and which should be limited. </p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="photo/blog-3.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="link"> <a href="#">by Expert Trainer</a> <span>|</span> <a href="#">21st may, 2022</a> </div>
+                    <h3>The Truth About OrangeTheory Workouts</h3>
+                    <p>When people find out I’m a trainer, there’s a moment where I’m tested. It happened recently at a dinner with my girlfriend’s family. The conversation turned to OrangeTheory, the popular bootcamp style of workouts that is a variety of weights and cardio supported by technology. </p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="photo/blog-4.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="link"> <a href="#">By Expert Trainer</a> <span>|</span> <a href="#">21st may, 2022</a> </div>
+                    <h3>Training to Failure: 5 Questions You Need to Answer</h3>
+                    <p>When I first started lifting weights, I tried to take every set to failure. I didn’t know any better because no one told me any different. And, if I looked at how Arnold lifted and the culture of bodybuilding, complete failure appeared to be the goal of training sessions.</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="photo/blog-5.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="link"> <a href="#">by Expert Trainer</a> <span>|</span> <a href="#">21st may, 2022</a> </div>
+                    <h3>The Different Forms of Whey Protein And What’s Best For You</h3>
+                    <p>I thought I knew the answers to these questions, but when I formulated all of the products for Ladder, I quickly learned that there’s a dark side of the supplement industry that has nothing to do with illegal ingredients or dangerous products</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+</section>
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a class="links" href="#home">home</a>
+            <a class="links" href="#about">about</a>
+            <a class="links" href="#features">features</a>
+            <a class="links" href="#pricing">pricing</a>
+            <a class="links" href="#trainers">trainers</a>
+            <a class="links" href="#blogs">blogs</a>
+        </div>
+
+        <div class="box">
+            <h3>opening hours</h3>
+            <p> monday : <i> 7:00am - 10:30pm </i> </p>
+            <p> tuesday : <i> 7:00am - 10:30pm </i> </p>
+            <p> wednesday : <i> 7:00am - 10:30pm </i> </p>
+            <p> friday : <i> 7:00am - 10:30pm </i> </p>
+            <p> saturday : <i> 7:00am - 10:30pm </i> </p>
+            <p> sunday : <i> closed </i> </p>
+        </div>
+
+        <div class="box">
+            <h3>opening hours</h3>
+            <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
+            <p> <i class="fas fa-phone"></i> +111-222-3333 </p>
+            <p> <i class="fas fa-envelope"></i> contact.fgc@gmail.com </p>
+            <p> <i class="fas fa-map"></i> gujarat, india - 388412 </p>
+            <div class="share">
+                <a href="#" ><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" ><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>newsletter</h3>
+            <p>subscribe for latest updates</p>
+            <form action="">
+                <input type="email" name="" class="email" placeholder="enter your email" id="">
+                <input type="submit" value="subscribe" class="btn">
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="credit"> ISO Cetified 2022-32 <span>FITNESS GYM GLUB</span> | all rights reserved! </div>
+
+<script src="script.js"></script>
 </body>
 
 </html>

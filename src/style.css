@@ -21,9 +21,10 @@
 }
 .navbar {
   width: 100%;
-<!--background-color: #041434;-->
+<!--background-color: #041434;--!>
   overflow: auto;
 }
+
 
 .navbar a {
 display: inline-block;
@@ -33,6 +34,13 @@ display: inline-block;
   color: #efe0c9;
   text-decoration:none;
 
+}
+.sbtn:hover {
+  border-radius: 30px;
+  background: #de5358;
+  text-align:center;
+  width: 60px;
+  cursor: pointer
 }
 body{
 background-color: #041434;
@@ -63,9 +71,8 @@ html{
   justify-content: space-between;
   padding:0 5%;
   z-index: 10000;
-background-color: #041333;
  opacity: 0.9;
-<!----background-color: #041333;---->
+<------background-color: #041333;-----!>
 
 
 
@@ -78,6 +85,9 @@ background-color: #041333;
 
 
   }
+}
+.header-scrolled {
+  background-color: grey;
 }
 
 
@@ -278,21 +288,16 @@ html::-webkit-scrollbar-thumb {
 }
 
 .heading span {
+ padding: 20px;
+  display: -ms-grid;
+  display: grid;
   font-size: 3rem;
   color: #f95b5b;
   background: #041434;
-  max-width:400px;
-  align:center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-flow: column-reverse;
-          flex-flow: column-reverse;
-  padding: 1rem 1.5rem;
-  border: 0.1rem solid #aaa;
-  border-radius: .5rem;
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 45px;
+
 }
 
 .features .box-container {

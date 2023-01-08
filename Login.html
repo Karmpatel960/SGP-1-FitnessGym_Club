@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FITNESS GYM CLUB</title>
-  <link rel="icon" href="photo/FGC (1).png" type="image/icon type">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <title>FITNESS GYM CLUB</title>
+    <link rel="icon" href="photo/FGC (1).png" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <style>
+    <style>
         @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
@@ -97,7 +97,7 @@ body {
 .login {
 	width: 320px;
 	padding: 30px;
-	padding-top: 80px;
+	padding-top: 50px;
 }
 
 .login__field {
@@ -111,7 +111,7 @@ body {
 	color: #f95b5b;
 }
 
-.login__input {
+.login__input [type="password"]{
 	border: none;
 	border-bottom: 2px solid #f95b5b;
 	background: none;
@@ -129,7 +129,7 @@ body {
 	border-bottom-color: #041333;
 }
 
-.login__submit {
+.login__submit [type="submit"]{
 	background: #041333;
 	font-size: 14px;
 	margin-top: 30px;
@@ -149,7 +149,7 @@ body {
 
 .login__submit:active,
 .login__submit:focus,
-.login__submit:hover {
+.login__submit:hover[type="submit"] {
 	border-color: #6A679E;
 	outline: none;
 }
@@ -196,51 +196,45 @@ body {
 
         }
     </style>
-  <div class="container">
+    <div class="container">
 
-    <div class="imgBox">
-      <img src="photo/8225.jpg">
+        <div class="imgBox">
+            <img src="photo/8225.jpg">
+        </div>
+        <div class="screen">
+            <div class="screen__content">
+                <a href="#" class="logo"><img src="photo/Screenshot_2023-01-08_215757-removebg-preview.png" height="100" alt=""> </a>
+                <form class="login" method = "POST" action="#">
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" class="login__input" placeholder="User name / Email">
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" class="login__input" placeholder="Password">
+                    </div>
+                    <button href="src/Main.html" class="button login__submit">
+                        <span class="button__text" >Log In Now</span>
+                        <i  class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                </form>
+                <div class="social-login">
+                    <h3>log in via</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-login__icon fab fa-instagram"></a>
+                        <a href="#" class="social-login__icon fab fa-facebook"></a>
+                        <a href="#" class="social-login__icon fab fa-twitter"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>
+        </div>
     </div>
-    <div class="screen">
-      <div class="screen__content">
-
-        <form class="login" method = "POST" action="#">
-          <p><Create Account</p>
-          <div class="login__field">
-            <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" placeholder="Enter Your Name">
-          </div>
-          <div class="login__field">
-            <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" placeholder=" Enter User name">
-          </div>
-          <div class="login__field">
-            <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" placeholder="Enter Email id">
-          </div>
-          <div class="login__field">
-            <i class="login__icon fas fa-lock"></i>
-            <input type="password" class="login__input" placeholder=" Create Password">
-          </div>
-          <div class="login__field">
-            <i class="login__icon fas fa-lock"></i>
-            <input type="text" class="login__input" placeholder="Re-Enter Password">
-          </div>
-
-          <button href="src/Main.html" class="button login__submit">
-            <span class="button__text" >Sign In</span>
-            <i  class="button__icon fas fa-chevron-right"></i>
-          </button>
-        </form>
-      </div>
-      <div class="screen__background">
-        <span class="screen__background__shape screen__background__shape4"></span>
-        <span class="screen__background__shape screen__background__shape3"></span>
-        <span class="screen__background__shape screen__background__shape2"></span>
-        <span class="screen__background__shape screen__background__shape1"></span>
-      </div>
-    </div>
-  </div>
 </head>
 <body>
 

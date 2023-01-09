@@ -70,7 +70,7 @@ body {
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #ebe2cb, #041333);
+	background: linear-gradient(160deg, #ebe2cb, #041333);
 	top: -24px;
 	right: 0;
 	border-radius: 32px;
@@ -115,7 +115,7 @@ body {
 
 .login__input:active,
 .login__input:focus,
-.login__input:hover  [type="password"]{
+.login__input:hover{
 	outline: none;
 	border-bottom-color: #041333;
 }
@@ -140,12 +140,12 @@ body {
 
 .login__submit:active,
 .login__submit:focus,
-.login__submit:hover[type="submit"] {
+.login__submit:hover{
 	border-color: #6A679E;
 	outline: none;
 }
 
-.button__icon [type="submit"] {
+.button__icon {
 	font-size: 24px;
 	margin-left: auto;
 	color: #ebe2cb;
@@ -185,4 +185,7 @@ body {
                 display: flex;
                 z-index: -100;
 
+        }
+        .logo{
+        z-index:100;
         }

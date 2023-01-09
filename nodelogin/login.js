@@ -5,7 +5,7 @@ const path = require('path');
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Karmpatel2003',
+  password: 'karmpatel2003',
   connectionLimit: 10
 });
 
@@ -22,28 +22,29 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
+app.use("/photo",express.static("photo"));
 app.use(express.json());
+app.set('view engine', 'html');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'static')));
+
 
 // http://localhost:3000/
 app.get('/', function(request, response) {
 	// Render login template
 	response.sendFile(path.join(__dirname + '/Login.html'));
 });
-//app.get('/nodelogin/Create_Account.html', function(request, response) {
-//	// Render login template
-//	response.sendFile(path.join(__dirname + '/Create_Account.html'));
-//});
-
+app.get('/acc', function(request, response) {
+	// Render login template
+	 response.sendFile("Create_Account.html", { root: './nodelogin/' })
+});
 // http://localhost:3000/auth
 app.post('/auth', function(request, response) {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
-	// Ensure the input fields exists and are not empty
+
 	if (username && password) {
-		// Execute SQL query that'll select the account from the database based on the specified username and password
 		connection.query('SELECT * FROM loginuser.userdata WHERE username = ? AND Password = ?', [username, password], function(error, results, fields) {
 			// If there is an issue with the query, output the error
 			if (error) throw error;

@@ -36,13 +36,21 @@ app.get('/', function(request, response) {
 });
 app.get('/acc', function(request, response) {
 	// Render login template
-	 response.sendFile("Create_Account.html", { root: './nodelogin/' })
+	 response.sendFile(path.join(__dirname + '/Create_Account.html'));
 });
+
+
 // http://localhost:3000/auth
 app.post('/auth', function(request, response) {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
+
+//    // Define the correct username and password
+//    const correctUsername = "1000"
+//    const correctPassword = "password"
+
+    // Check if the user's input matches the correct values
 
 	if (username && password) {
 		connection.query('SELECT * FROM loginuser.userdata WHERE username = ? AND Password = ?', [username, password], function(error, results, fields) {
@@ -60,24 +68,41 @@ app.post('/auth', function(request, response) {
 			}
 			response.end();
 		});
-	} else {
+//	} else if (username === correctUsername && password === correctPassword) {
+//	                       if (request.session.loggedin) {
+//                                response.redirect('/admin'), {}, function (err) {
+//                                    if(err){
+//                                        response.status(404).send("File not found");
+//                                    }
+//                                });
+//                          }
+//  else {
+//                                response.status(401).send('Please login to view this page!');
+//                            }
+//
+
+     } else {
 		response.send('Please enter Username and Password!');
 		response.end();
 	}
 });
 
-// http://localhost:3000/home
-app.get('/home', function(request, response) {
-	// If the user is loggedin
-	if (request.session.loggedin) {
-		// Output username
-		response.sendFile(path.join(__dirname + 'SGP-1-FitnessGym_Club/src/Main.html'));
-//		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		// Not logged in
-		response.send('Please login to view this page!');
-	}
-	response.end();
+
+app.get('/home', function(request,response){
+    if (request.session.loggedin) {
+            response.sendFile(path.join(__dirname + '/UserPage.html'));
+        } else {
+            response.redirect('/');
+        }
 });
+
+app.get('/admin', function(request,response){
+    if (request.session.loggedin) {
+            response.sendFile(path.join(__dirname + '/Admin.html'));
+        } else {
+            response.redirect('/');
+        }
+});
+
 
 app.listen(3000);

@@ -1,0 +1,17 @@
+{
+  "name": "nodelogin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "login.js",
+  "scripts": {
+    "start": "node login.js"
+  },
+  "keywords": [],
+  "author": "karm",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql": "^2.18.1"
+  }
+}

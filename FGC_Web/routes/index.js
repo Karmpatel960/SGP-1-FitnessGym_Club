@@ -94,21 +94,21 @@ router.get('/admin', function(request,response){
 });
 
 router.post('/register', (req, res) => {
-  const {Name,Username,email,password,passwordConfirm} = req.body;
-//  connection.query('SELECT email from loginuser.userdata WHERE email = ?', [email], async (err, results) => {
-//    if (err) {
-//      console.log(err);
-//    } else {
-//      if (results.length > 0) {
-//        return res.render("Create_Account", {
-//          message: 'The email is already in use'
-//        })
-//      } else if (password !== passwordConfirm) {
-//        return res.render("Create_Account", {
-//          message: 'Password dont match'
-//        });
-//      }
-//    }
+  const {Username,Name,email,password,passwordConfirm} = req.body;
+  connection.query('SELECT email from loginuser.userdata WHERE email = ?', [email], async (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (results.length > 0) {
+        return res.render("Create_Account", {
+          message: 'The email is already in use'
+        })
+      } else if (password !== passwordConfirm) {
+        return res.render("Create_Account", {
+          message: 'Password dont match'
+        });
+      }
+    }
     const sysT = 'T';
 //    INSERT INTO `loginuser`.`userdata` (`Username`, `syst`, `Name`, `Password`, `Email`) VALUES ('900', 'T', 'Row', 'Roy4', 'row2');
     connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,sysT:sysT,Name: Name,Password: Password, Email: Email}, (err, results) => {

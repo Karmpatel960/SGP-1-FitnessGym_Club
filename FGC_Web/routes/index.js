@@ -117,9 +117,7 @@ router.post('/register', (request, response) => {
           }
         });
     }
-
     response.redirect('/')
-
  });
  router.get('/signout', function(request, response) {
      request.session.loggedin = false;

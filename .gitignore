@@ -28,4 +28,4 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-FGC_Web/node_modules
+#FGC_Web/node_modules

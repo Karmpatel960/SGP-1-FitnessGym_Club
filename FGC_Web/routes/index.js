@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 const mysql = require('mysql');
 const session = require('express-session');
+//var flash = require('express-flash');
 const path = require('path');
+var flash = require('connect-flash');
+router.use(flash());
+
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -14,6 +18,7 @@ connection.connect(function(err){
        throw err;
   console.log('Connection established sucessfully');
 });
+router.use(flash());
 
 router.use(session({
 	secret: 'secret',
@@ -25,6 +30,7 @@ router.use(session({
 router.get('/', function(request, response) {
 	// Render login template
 	response.sendFile("Login.html", { root: './public/' })
+
 });
 router.get('/acc', function(request, response) {
 	// Render login template
@@ -43,9 +49,7 @@ router.post('/auth', function(request, response) {
     // Check if the user's input matches the correct values
 	if (username && password) {
 		connection.query('SELECT * FROM loginuser.userdata WHERE username = ? AND Password = ?', [username, password], function(error, results, fields) {
-			// If there is an issue with the query, output the error
-			if (error) throw error;
-			// If the account exists
+
 			if (results.length > 0) {
 				if (username === correctUsername && password === correctPassword) {
 				    request.session.loggedin = true;
@@ -93,38 +97,35 @@ router.get('/admin', function(request,response){
         }
 });
 
-router.post('/register', (req, res) => {
-  const {Username,Name,email,password,passwordConfirm} = req.body;
-  connection.query('SELECT email from loginuser.userdata WHERE email = ?', [email], async (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      if (results.length > 0) {
-        return res.render("Create_Account", {
-          message: 'The email is already in use'
-        })
-      } else if (password !== passwordConfirm) {
-        return res.render("Create_Account", {
-          message: 'Password dont match'
+router.post('/register', (request, response) => {
+    let Name = request.body.Name;
+    let Username = request.body.Username;
+	let Password = request.body.Password;
+	let Email = request.body.Email;
+	let passwordConfirm = request.body.passwordConfirm;
+	const syst = 'T';
+    if (Password !== passwordConfirm) {
+    response.send('Password dont match');
+    } else{
+        connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,syst: syst,Name: Name,Password: Password, Email: Email}, (err, results) => {
+         request.flash('success', 'Your account has been created successfully');
+         if (results.length > 0) {
+          response.redirect('/')
+          }
+          else {
+            console.log(err);
+          }
         });
-      }
     }
-    const sysT = 'T';
-//    INSERT INTO `loginuser`.`userdata` (`Username`, `syst`, `Name`, `Password`, `Email`) VALUES ('900', 'T', 'Row', 'Roy4', 'row2');
-    connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,sysT:sysT,Name: Name,Password: Password, Email: Email}, (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        return res.render("Create_Account", {
-          message: 'User registered'
-        });
-      }
-    });
-    res.redirect('/');
+
+    response.redirect('/')
+
  });
  router.get('/signout', function(request, response) {
      request.session.loggedin = false;
+     request.flash('Successfully Signed Out');
  	 response.sendFile("Login.html", { root: './public/' })
+
  });
 
 module.exports = router;

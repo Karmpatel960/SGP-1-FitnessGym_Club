@@ -1,5 +1,5 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+
+if message.success
+  div.alert.alert-success= message.success

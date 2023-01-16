@@ -10,7 +10,7 @@ router.use(flash());
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'karmpatel2003',
+  password: 'FGCpassword2023',
   connectionLimit: 10
 });
 connection.connect(function(err){

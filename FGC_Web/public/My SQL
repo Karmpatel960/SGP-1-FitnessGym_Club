@@ -1,0 +1,12 @@
+CREATE TABLE `userdata` (
+  `Username` int NOT NULL,
+  `syst` varchar(45) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  PRIMARY KEY (`Username`,`syst`,`Name`,`Password`,`Email`),
+  UNIQUE KEY `Username_UNIQUE` (`Username`) /*!80000 INVISIBLE */,
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `Password_UNIQUE` (`Password`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+

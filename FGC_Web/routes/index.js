@@ -37,7 +37,7 @@ router.get('/acc', function(request, response) {
 	 response.sendFile("Create_Account.html", { root: './public/' })
 });
 
-router.post('/auth', function(request, response) {
+router.post('/auth', function(request,response) {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
@@ -70,6 +70,7 @@ router.post('/auth', function(request, response) {
 					response.redirect('/home');
 				}
 			} else {
+//			     response.render("Login.html", { error: error.message });
 				 response.send('Invalid Username and Password!');
 			}
 			response.end();

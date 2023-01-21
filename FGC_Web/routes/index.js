@@ -46,7 +46,7 @@ router.post('/auth', function(request,response) {
     const correctUsername = "1000"
     const correctPassword = "password"
 
-    // Check if the user's input matches the correct values
+
 	if (username && password) {
 		connection.query('SELECT * FROM loginuser.userdata WHERE username = ? AND Password = ?', [username, password], function(error, results, fields) {
 

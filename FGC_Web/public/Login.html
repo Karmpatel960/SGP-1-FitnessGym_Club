@@ -184,7 +184,9 @@ body {
 }
 
 .social-login__icon:hover {
+   color: #3f729b;
 	transform: scale(1.5);
+
 }
 
 .imgBox {
@@ -195,9 +197,18 @@ body {
                 z-index: -100;
 
         }
-        .logo{
+.logo{
         z-index:100;
-        }</style>
+}
+a{
+color:  #ebe2cb;
+text-decoration: none;
+font-family: Raleway, sans-serif;
+}
+a:hover{
+  color: #f95b5b;
+}
+</style>
     <div class="container">
 
         <div class="imgBox">
@@ -218,8 +229,8 @@ body {
                         <input type="password" class="login__input" placeholder="Password" name="password" id="password" required>
                     </div>
                     <button  href="/auth" class="button login__submit">
-                        <span class="button__text" type="submit" value="Login" >Log In Now</span>
-                        <i  class="button__icon fas fa-chevron-right"></i>
+                        <span class="button__text" type="submit" value="Login" ><a>Log In Now</a></span>
+                         <i  class="button__icon fas fa-chevron-right"></i>
                     </button>
                 </form>
                 <div class="social-login">

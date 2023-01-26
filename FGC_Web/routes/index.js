@@ -111,13 +111,15 @@ router.post('/register', (request, response) => {
     const syst = 'T';
 
     if (Password !== passwordConfirm) {
-        response.render('error',{ message:'Password dont match'});
+        response.render('error',{ message:'Password dont match'},(err, html) => {
+        response.redirect('/');
+        });
     } else {
         connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,syst: syst,Name: Name,Password: Password, Email: Email}, (err, results) => {
             if (err) {
                 response.render('error', { error: err });
             } else {
-              response.render('Create_success', (err, html) => {
+              response.render('Create_success',{toast: true}, (err, html) => {
                   response.redirect('/');
               });
           }

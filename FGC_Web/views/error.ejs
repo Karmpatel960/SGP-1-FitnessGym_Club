@@ -1,5 +1,31 @@
-<!-- <div class="error-message"> -->
-<!--     <% if (error) { %> -->
-<!--         <p><%= error %></p> -->
-<!--     <% } %> -->
-<!-- </div> -->
+<!-- error.ejs -->
+<div id="toast-container"></div>
+<script>
+  function showToast(message) {
+    var toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.innerHTML = message;
+    document.getElementById("toast-container").appendChild(toast);
+    setTimeout(function() {
+      document.getElementById("toast-container").removeChild(toast);
+    }, 5000);
+  }
+  showToast("<%= error %>");
+</script>
+<style>
+    #toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .toast {
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px gray;
+      text-align: center;
+    }
+  </style>

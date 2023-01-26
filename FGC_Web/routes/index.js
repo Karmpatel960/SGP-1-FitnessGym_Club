@@ -2,10 +2,7 @@ var express = require('express');
 var router = express.Router();
 const mysql = require('mysql');
 const session = require('express-session');
-//var flash = require('express-flash');
 const path = require('path');
-var flash = require('connect-flash');
-router.use(flash());
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -18,7 +15,6 @@ connection.connect(function(err){
        throw err;
   console.log('Connection established sucessfully');
 });
-router.use(flash());
 
 router.use(session({
 	secret: 'secret',
@@ -27,14 +23,23 @@ router.use(session({
 }));
 
 // http://localhost:3000/
-router.get('/', function(request, response) {
-	// Render login template
-	response.sendFile("Login.html", { root: './public/' })
-
+router.get('/', function(request,response,next) {
+    try {
+        const error = request.query.error;
+        response.render('Login', { error });
+    } catch(err) {
+        response.render('error', { error: err });
+    }
 });
-router.get('/acc', function(request, response) {
+
+router.get('/acc', function(request, response,next) {
 	// Render login template
-	 response.sendFile("Create_Account.html", { root: './public/' })
+	 try {
+     const error = request.query.error;
+	 response.render('Create_Account', { error });
+	 } catch(err) {
+             response.render('error', { error: err });
+     }
 });
 
 router.post('/auth', function(request,response) {
@@ -56,7 +61,7 @@ router.post('/auth', function(request,response) {
 					if (request.session.loggedin) {
 						response.redirect('/admin', {}, function (err) {
 							if(err){
-								response.status(404).send("File not found");
+							    response.render('error', { message: 'File not found' });
 							}
 						});
 					} else {
@@ -70,61 +75,60 @@ router.post('/auth', function(request,response) {
 					response.redirect('/home');
 				}
 			} else {
-//			     response.render("Login.html", { error: error.message });
-				 response.send('Invalid Username and Password!');
+			     response.redirect('/?error=Invalid Username and Password!');
 			}
 			response.end();
 		});
 
      } else {
-		response.send('Please enter Username and Password!');
+        response.redirect('/?error=Please enter Username and Password!');
 		response.end();
 	}
 });
 
 router.get('/home', function(request,response){
     if (request.session.loggedin) {
-            response.sendFile("UserPage.html", { root: './public/' })
+            response.render('UserPage');
         } else {
-            response.sendFile("Login.html", { root: './public/' })
+            response.render('Login');
         }
 });
 
 router.get('/admin', function(request,response){
     if (request.session.loggedin) {
-            response.sendFile("Admin.html", { root: './public/' })
+            response.render('Admin');
         } else {
-            response.sendFile("Login.html", { root: './public/' })
+            response.render('Login');
         }
 });
 
 router.post('/register', (request, response) => {
     let Name = request.body.Name;
     let Username = request.body.Username;
-	let Password = request.body.Password;
-	let Email = request.body.Email;
-	let passwordConfirm = request.body.passwordConfirm;
-	const syst = 'T';
+    let Password = request.body.Password;
+    let Email = request.body.Email;
+    let passwordConfirm = request.body.passwordConfirm;
+    const syst = 'T';
+
     if (Password !== passwordConfirm) {
-    response.send('Password dont match');
-    } else{
+        response.render('error',{ message:'Password dont match'});
+    } else {
         connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,syst: syst,Name: Name,Password: Password, Email: Email}, (err, results) => {
-         request.flash('success', 'Your account has been created successfully');
-         if (results.length > 0) {
-          response.redirect('/')
-          }
-          else {
-            console.log(err);
+            if (err) {
+                response.render('error', { error: err });
+            } else {
+              response.render('Create_success', (err, html) => {
+                  response.redirect('/');
+              });
           }
         });
     }
-    response.redirect('/')
- });
+});
+
  router.get('/signout', function(request, response) {
      request.session.loggedin = false;
-     request.flash('Successfully Signed Out');
- 	 response.sendFile("Login.html", { root: './public/' })
-
+      response.redirect('/?error=Successfully Signed Out');
  });
+
 
 module.exports = router;

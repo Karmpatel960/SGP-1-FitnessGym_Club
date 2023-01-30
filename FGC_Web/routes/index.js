@@ -103,11 +103,6 @@ router.get('/admin', function(request,response){
         }
 });
 
-
-
-
-
-
 router.post('/register', (request, response) => {
     let Name = request.body.Name;
     let Username = request.body.Username;

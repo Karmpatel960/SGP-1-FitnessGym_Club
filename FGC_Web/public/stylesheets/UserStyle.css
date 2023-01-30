@@ -10,7 +10,7 @@
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #0A2558;
+  background: #ebe2cb;
   transition: all 0.5s ease;
 }
 .sidebar.active{
@@ -24,12 +24,12 @@
 .sidebar .logo-details i{
   font-size: 28px;
   font-weight: 500;
-  color: #fff;
+  color: #f95b5b;
   min-width: 60px;
   text-align: center
 }
 .sidebar .logo-details .logo_name{
-  color: #fff;
+  color: #f95b5b;
   font-size: 24px;
   font-weight: 500;
 }
@@ -59,10 +59,10 @@
   min-width: 60px;
   text-align: center;
   font-size: 18px;
-  color: #fff;
+  color: #f95b5b;
 }
 .sidebar .nav-links li a .links_name{
-  color: #fff;
+  color: #f95b5b;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -74,7 +74,7 @@
 }
 .home-section{
   position: relative;
-  background: #f5f5f5;
+  background: #041333;
   min-height: 100vh;
   width: calc(100% - 240px);
   left: 240px;
@@ -88,7 +88,7 @@
   display: flex;
   justify-content: space-between;
   height: 80px;
-  background: #fff;
+  background: #041333;
   display: flex;
   align-items: center;
   position: fixed;
@@ -104,6 +104,7 @@
   width: calc(100% - 60px);
 }
 .home-section nav .sidebar-button{
+  color: #f95b5b;
   display: flex;
   align-items: center;
   font-size: 24px;
@@ -124,7 +125,7 @@ nav .search-box input{
   height: 100%;
   width: 100%;
   outline: none;
-  background: #F5F6FA;
+  background: #ebe2cb;
   border: 2px solid #EFEEF1;
   border-radius: 6px;
   font-size: 18px;
@@ -189,7 +190,7 @@ nav .profile-details i{
   align-items: center;
   justify-content: center;
   width: calc(100% / 4 - 15px);
-  background: #fff;
+  background: #ebe2cb;
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
@@ -215,7 +216,7 @@ nav .profile-details i{
   line-height: 20px;
   text-align: center;
   border-radius: 50%;
-  color: #fff;
+  color: #ebe2cb;
   font-size: 20px;
   margin-right: 5px;
 }
@@ -262,7 +263,7 @@ nav .profile-details i{
 /* left box */
 .home-content .sales-boxes .recent-sales{
   width: 65%;
-  background: #fff;
+  background: #ebe2cb;
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
@@ -314,7 +315,7 @@ nav .profile-details i{
 /* Right box */
 .home-content .sales-boxes .top-sales{
   width: 35%;
-  background: #fff;
+  background: #ebe2cb;
   padding: 20px 30px;
   margin: 0 20px 0 0;
   border-radius: 12px;

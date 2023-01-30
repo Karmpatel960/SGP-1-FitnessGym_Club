@@ -32,6 +32,7 @@ router.get('/', function(request,response,next) {
     }
 });
 
+
 router.get('/acc', function(request, response,next) {
 	// Render login template
 	 try {
@@ -101,6 +102,11 @@ router.get('/admin', function(request,response){
             response.render('Login');
         }
 });
+
+
+
+
+
 
 router.post('/register', (request, response) => {
     let Name = request.body.Name;

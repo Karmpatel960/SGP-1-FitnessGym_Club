@@ -438,3 +438,19 @@ nav .profile-details i{
     width: calc(100% - 60px);
   }
 }
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: lightgray;
+}

@@ -32,7 +32,6 @@ router.get('/', function(request,response,next) {
     }
 });
 
-
 router.get('/acc', function(request, response,next) {
 	// Render login template
 	 try {
@@ -97,11 +96,21 @@ router.get('/home', function(request,response){
 
 router.get('/admin', function(request,response){
     if (request.session.loggedin) {
-            response.render('Admin');
+                    connection.query('SELECT Name,Email FROM loginuser.userdata ', function (err, rows) {
+                            if (err) {
+                              response.render('Admin', { data: '' })
+                            } else {
+                              response.render('Admin', { data: rows })
+                            }
+                          });
+//            response.render('Admin');
+
         } else {
             response.render('Login');
         }
+
 });
+
 
 router.post('/register', (request, response) => {
     let Name = request.body.Name;

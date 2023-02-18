@@ -189,10 +189,12 @@ body {
 
 .imgBox {
         position: fixed;
-        width: 100%;
-        height: 150%;
                 display: flex;
                 z-index: -100;
+
+                align-items: left;
+                	justify-content: center;
+                	min-height: 100vh;
 
         }
 .logo{
@@ -248,7 +250,7 @@ a:hover{
 
             <div class="screen__content">
                 <a><img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="100"> </a>
-                <form  action="/auth" class="login" method = "POST">
+                <form  action="/oauth" class="login" method = "POST">
                     <p><h3>Log in</h3></p>
                     <div class="login__field">
 
@@ -263,7 +265,7 @@ a:hover{
                         <div class="error-message">
                       </div>
                      <% } %>
-                    <button  href="/auth" class="button login__submit">
+                    <button  href="/oauth" class="button login__submit">
                         <span class="button__text" type="submit" value="Login" ><a>Log In Now</a></span>
                          <i  class="button__icon fas fa-chevron-right"></i>
                     </button>
@@ -272,8 +274,8 @@ a:hover{
                     <h3>log in via</h3>
                     <div class="social-icons">
                         <a href="#" class="social-login__icon fab fa-instagram"></a>
-                        <a href="#" class="social-login__icon fab fa-facebook"></a>
                         <a href="#" class="social-login__icon fab fa-twitter"></a>
+                        <a href="/auth" class="social-login__icon fab fa-google"></a>
                     </div>
                     <p>or</p>
                     <h5 ><a href="/acc">Create Account?</a></h5>

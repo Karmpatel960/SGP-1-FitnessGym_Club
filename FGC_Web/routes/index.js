@@ -3,6 +3,26 @@ var router = express.Router();
 const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
+const passport = require('passport');
+//const cookieSession = require('cookie-session');
+require('./passport');
+
+router.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true,
+	cookie:{
+	name: 'google-auth-session',
+    	keys: ['key1', 'key2']
+	}
+}));
+//router.use(cookieSession({
+//    maxAge: 30 * 24 * 60 * 60 * 1000,
+//	name: 'google-auth-session',
+//	keys: ['key1', 'key2']
+//}));
+router.use(passport.initialize());
+router.use(passport.session());
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -16,11 +36,8 @@ connection.connect(function(err){
   console.log('Connection established sucessfully');
 });
 
-router.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
+
+
 
 // http://localhost:3000/
 router.get('/', function(request,response,next) {
@@ -42,7 +59,7 @@ router.get('/acc', function(request, response,next) {
      }
 });
 
-router.post('/auth', function(request,response) {
+router.post('/oauth', function(request,response) {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
@@ -85,6 +102,31 @@ router.post('/auth', function(request,response) {
 		response.end();
 	}
 });
+
+
+
+router.get('/auth' , passport.authenticate('google', { scope:
+	[ 'email', 'profile' ]
+}));
+
+// Auth Callback
+router.get( '/auth/callback',
+	passport.authenticate( 'google', {
+		successRedirect: '/auth/callback/success',
+		failureRedirect: '/auth/callback/failure'
+}));
+
+// Success
+router.get('/auth/callback/success' , (req , res) => {
+	if(!req.user)
+		res.redirect('/auth/callback/failure');
+	res.render('UserPage');
+});
+
+// failure
+router.get('/auth/callback/failure' , (req , res) => {
+	res.send("Error");
+})
 
 router.get('/home', function(request,response){
     if (request.session.loggedin) {
@@ -138,8 +180,10 @@ router.post('/register', (request, response) => {
 });
 
  router.get('/signout', function(request, response) {
-     request.session.loggedin = false;
-      response.redirect('/?error=Successfully Signed Out');
+      request.session.loggedin = false;
+      request.session = null;
+              response.redirect('/?error=Successfully Signed Out');
+
  });
 
 

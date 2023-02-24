@@ -4,9 +4,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
-//const cookieSession = require('cookie-session');
-require('./passport');
-
+var facebook = require('passport-facebook');const facebookStrategy = facebook.Strategy;
 router.use(session({
 	secret: 'secret',
 	resave: true,
@@ -128,14 +126,33 @@ router.get('/auth/callback/failure' , (req , res) => {
 	res.send("Error");
 })
 
+router.get('/auth/facebook',passport.authenticate('facebook',{
+  scope:['public_profile','email']
+}));
+
+router.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {failureRedirect: '/fail'}),
+	function(req, res) {
+		// Successful authentication, redirect home
+		res.redirect('/home');
+	});
+
+function isLoggedIn(req,res,next){
+   if (request.isAuthenticated()) {
+      return next();
+   }
+   response.redirect('/');
+   }
+
 router.get('/home', function(request,response){
-    if (request.session.loggedin) {
+    const { facebook } = request.user;
+    if (request.session.loggedin || request.user) {
             response.render('UserPage');
         } else {
             response.render('Login');
         }
-});
 
+});
 router.get('/admin', function(request,response){
     if (request.session.loggedin) {
                     connection.query('SELECT Name,Email FROM loginuser.userdata ', function (err, rows) {
@@ -180,6 +197,7 @@ router.post('/register', (request, response) => {
 });
 
  router.get('/signout', function(request, response) {
+       request.session.logout();
       request.session.loggedin = false;
       request.session = null;
               response.redirect('/?error=Successfully Signed Out');

@@ -1,6 +1,9 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+var facebookAuth = require('passport-facebook');const facebookStrategy = facebook.Strategy;
 
+//const uroute = require('users')
+const config = require('FGC_Web/config/config.js')
 passport.serializeUser((user , done) => {
 	done(null , user);
 })
@@ -17,4 +20,13 @@ passport.use(new GoogleStrategy({
 function(request, accessToken, refreshToken, profile, done) {
 	return done(null, profile);
 }
+));
+passport.use(new FacebookStrategy({
+		clientID: config.facebookAuth.clientID,
+		clientSecret: config.facebookAuth.clientSecret,
+		callbackURL: config.facebookAuth.clientURL
+	},
+	function(accessToken, refreshToken, profile, done) {
+   return done(null,profile);
+	}
 ));

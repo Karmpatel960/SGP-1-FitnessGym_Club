@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
-var facebook = require('passport-facebook');const facebookStrategy = facebook.Strategy;
+require('./passport');
 router.use(session({
 	secret: 'secret',
 	resave: true,
@@ -13,12 +13,8 @@ router.use(session({
 	name: 'google-auth-session',
     	keys: ['key1', 'key2']
 	}
+
 }));
-//router.use(cookieSession({
-//    maxAge: 30 * 24 * 60 * 60 * 1000,
-//	name: 'google-auth-session',
-//	keys: ['key1', 'key2']
-//}));
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -38,7 +34,7 @@ connection.connect(function(err){
 
 
 // http://localhost:3000/
-router.get('/', function(request,response,next) {
+router.get('/',function(request,response,next) {
     try {
         const error = request.query.error;
         response.render('Login', { error });
@@ -126,17 +122,6 @@ router.get('/auth/callback/failure' , (req , res) => {
 	res.send("Error");
 })
 
-router.get('/auth/facebook',passport.authenticate('facebook',{
-  scope:['public_profile','email']
-}));
-
-router.get('/auth/facebook/callback',
-	passport.authenticate('facebook', {failureRedirect: '/fail'}),
-	function(req, res) {
-		// Successful authentication, redirect home
-		res.redirect('/home');
-	});
-
 function isLoggedIn(req,res,next){
    if (request.isAuthenticated()) {
       return next();
@@ -144,9 +129,9 @@ function isLoggedIn(req,res,next){
    response.redirect('/');
    }
 
-router.get('/home', function(request,response){
-    const { facebook } = request.user;
-    if (request.session.loggedin || request.user) {
+router.get('/home',isLoggedIn,function(request,response){
+//    const { facebook } = request.user;
+    if (request.session.loggedin) {
             response.render('UserPage');
         } else {
             response.render('Login');
@@ -195,14 +180,22 @@ router.post('/register', (request, response) => {
         });
     }
 });
+router.get('/logout', function(request, response) {
+  request.logout(function(err) {
+    if (err) {
+      console.error('Error logging out:', err);
+      return next(err);
+    }
+    request.session.destroy(function(err) {
+      if (err) {
+        console.error('Error destroying session:', err);
+        return next(err);
+      }
+      response.redirect('/?error=Successfully Signed Out');
+    });
+  });
+});
 
- router.get('/signout', function(request, response) {
-       request.session.logout();
-      request.session.loggedin = false;
-      request.session = null;
-              response.redirect('/?error=Successfully Signed Out');
-
- });
 
 
 module.exports = router;

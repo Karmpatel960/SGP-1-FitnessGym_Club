@@ -99,9 +99,10 @@ router.post('/oauth', function(request,response) {
 
 
 
-router.get('/auth' , passport.authenticate('google', { scope:
+router.get('/auth/google' , passport.authenticate('google', { scope:
 	[ 'email', 'profile' ]
 }));
+
 
 // Auth Callback
 router.get( '/auth/callback',
@@ -121,6 +122,26 @@ router.get('/auth/callback/success' , (req , res) => {
 router.get('/auth/callback/failure' , (req , res) => {
 	res.send("Error");
 })
+
+router.get('/auth/facebook',
+    passport.authenticate('facebook', { authType: 'reauthenticate', scope: ['user_friends', 'manage_pages'] }));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('UserPage');
+  });
+
+router.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+router.get('/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('UserPage');
+  });
 
 function isLoggedIn(req,res,next){
    if (request.isAuthenticated()) {

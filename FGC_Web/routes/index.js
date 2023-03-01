@@ -53,6 +53,16 @@ router.get('/acc', function(request, response,next) {
      }
 });
 
+router.get('/Fog', function(request, response,next) {
+	// Render login template
+	 try {
+     const error = request.query.error;
+	 response.render('ForgotPass', { error });
+	 } catch(err) {
+             response.render('error', { error: err });
+     }
+});
+
 router.post('/oauth', function(request,response) {
 	// Capture the input fields
 	let username = request.body.username;
@@ -151,7 +161,7 @@ function isLoggedIn(req,res,next){
    }
 
 router.get('/home',isLoggedIn,function(request,response){
-//    const { facebook } = request.user;
+
     if (request.session.loggedin) {
             response.render('UserPage');
         } else {
@@ -159,6 +169,11 @@ router.get('/home',isLoggedIn,function(request,response){
         }
 
 });
+//
+//req.login(user, function(err) {
+//  if (err) { return next(err); }
+//  return res.render('UserPage');
+//});
 router.get('/admin', function(request,response){
     if (request.session.loggedin) {
                     connection.query('SELECT Name,Email FROM loginuser.userdata ', function (err, rows) {
@@ -201,21 +216,30 @@ router.post('/register', (request, response) => {
         });
     }
 });
-router.get('/logout', function(request, response) {
-  request.logout(function(err) {
-    if (err) {
-      console.error('Error logging out:', err);
-      return next(err);
-    }
-    request.session.destroy(function(err) {
-      if (err) {
-        console.error('Error destroying session:', err);
-        return next(err);
-      }
-      response.redirect('/?error=Successfully Signed Out');
-    });
+//router.get('/logout', function(request, response) {
+//  request.logout(function(err) {
+//    if (err) {
+//      console.error('Error logging out:', err);
+//      return next(err);
+//    }
+//    request.session.destroy(function(err) {
+//      if (err) {
+//        console.error('Error destroying session:', err);
+//        return next(err);
+//      }
+//      response.redirect('/?error=Successfully Signed Out');
+//    });
+//  });
+//});
+
+
+router.post('/logout', function(req, res, next){
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/?error=Successfully Signed Out');
   });
 });
+
 
 
 

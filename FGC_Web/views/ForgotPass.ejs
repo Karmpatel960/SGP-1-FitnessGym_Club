@@ -12,16 +12,19 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-body">
-						<form>
+						<form id="forgot-password-form">
 							<div class="form-group">
-							<label for="email">User ID</label>
-                            <input type="email" class="form-control" id="Userid" placeholder="Enter UserID">
-                            <br>
+								<label for="email">User ID</label>
+                                                        <input type="email" class="form-control" id="Userid" placeholder="Enter UserID">
+                                                        <br>
 								<label for="email">Email Address</label>
-								<input type="email" class="form-control" id="email" placeholder="Enter email">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
+						<div id="success-message" class="mt-3 d-none alert alert-success" role="alert">
+							A password reset link has been sent to your email.
+						</div>
 					</div>
 				</div>
 			</div>
@@ -32,5 +35,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#forgot-password-form").submit(function(e) {
+				e.preventDefault();
+				var email = $("#email").val();
+				// You can add your own code here to send a password reset email to the user
+				// For this example, we just show the success message
+				$("#success-message").removeClass("d-none");
+			});
+		});
+	</script>
 </body>
 </html>

@@ -182,7 +182,7 @@ body {
 }
 
 .social-login__icon:hover {
-   color: #3f729b;
+   color: #f95b5b;
 	transform: scale(1.5);
 
 }
@@ -207,6 +207,15 @@ font-family: Raleway, sans-serif;
 }
 a:hover{
   color: #f95b5b;
+}
+
+.fog_cs{
+color:  #f95b5b;
+text-decoration: none;
+font-family: Raleway, sans-serif;
+}
+.fog_cs:hover{
+  color: #7875B5;
 }
 
 </style>
@@ -293,6 +302,7 @@ a:hover{
                         <i class="login__icon fas fa-lock"></i>
                         <input type="password" class="login__input" placeholder="Password" name="password" id="password" required>
                     </div>
+                    <h5 ><a href="/fog" class="fog_cs">Forgot Password?</a></h5>
                      <% if (error) { %>
                         <div class="error-message">
                       </div>
@@ -311,8 +321,6 @@ a:hover{
                     </div>
                     <p>or</p>
                     <h5 ><a href="/acc">Create Account</a></h5>
-                    <p>or</p>
-                    <h5 ><a href="/fog">Forgot Password?</a></h5>
 
                 </div>
             </div>

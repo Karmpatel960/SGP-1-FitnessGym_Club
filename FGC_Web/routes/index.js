@@ -169,7 +169,7 @@ function isLoggedIn(req,res,next){
    response.redirect('/Login');
    }
 
-router.get('/home',isLoggedIn,function(request,response){
+router.get('/home',function(request,response){
 
     if (request.session.loggedin) {
             response.render('UserPage');
@@ -183,22 +183,29 @@ router.get('/home',isLoggedIn,function(request,response){
 //  if (err) { return next(err); }
 //  return res.render('UserPage');
 //});
-router.get('/admin', function(request,response){
-    if (request.session.loggedin) {
-                    connection.query('SELECT Name,Email FROM loginuser.userdata ', function (err, rows) {
-                            if (err) {
-                              response.render('Admin', { data: '' })
-                            } else {
-                              response.render('Admin', { data: rows })
-                            }
-                          });
-//            response.render('Admin');
-
-        } else {
-            response.render('Login');
+router.get('/admin', function(request, response) {
+  if (request.session.loggedin) {
+    connection.query('SELECT * FROM loginuser.userdata', function(err, userRows) {
+      if (err) {
+        response.render('Admin', { data: [], products: [] });
+      } else {
+        connection.query('SELECT name, price FROM loginuser.productdata', function(err, productRows) {
+          if (err) {
+            response.render('Admin', { data: [], products: [] });
+          } else {
+            // Extract the user data and product data from the results
+            var userData = userRows.map(row => ({ Name: row.Name, Email: row.Email }));
+            var productData = productRows.map(row => ({ ProductName: row.name, Price: row.price }));
+            response.render('Admin', { data: userData, products: productData });
+          }
+        });
         }
-
+    });
+  } else {
+    response.render('Login');
+  }
 });
+
 
 
 router.post('/register', (request, response) => {

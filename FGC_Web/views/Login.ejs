@@ -246,6 +246,16 @@ font-family: Raleway, sans-serif;
     }
   }
 
+
+function showLoader() {
+  document.querySelector('.loader-wrapper').style.display = 'block';
+}
+
+// Hide the loader when content is loaded
+function hideLoader() {
+  document.querySelector('.loader-wrapper').style.display = 'none';
+}
+window.addEventListener('beforeunload', showLoader);
 </script>
 <style>
     #toast-container {
@@ -276,8 +286,28 @@ font-family: Raleway, sans-serif;
       width: 0%;
     }
 
-  </style>
+    .loader-wrapper {
+      display: none; /* Hide the loader by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
+      z-index: 9999; /* Make sure the loader is on top of other elements */
+    }
 
+    .loader-wrapper img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  </style>
+<div class="loader-wrapper">
+  <img src="images/Spin-1s-200px (1).gif" alt="Loader GIF">
+</div>
     <div class="container">
 
         <div class="imgBox">

@@ -10,8 +10,6 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-<!--         <i class='bx bxl-c-plus-plus'></i> -->
-<!--         <span class="logo_name">CodingLab</span> -->
          <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="60">
     </div>
     <ul class="nav-links">
@@ -115,7 +113,7 @@
             <div class="box">
                 <div class="right-side">
                     <div class="box-topic">Total Profit</div>
-                    <div class="number">$12,876</div>
+                    <div class="number">12,876</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -140,102 +138,69 @@
             <div class="recent-sales box">
                 <div class="title">Recent Customers</div>
                 <div class="sales-details">
-<% if(data.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for(var i = 0;i < data.length && i < 10; i++) { %>
+
+  <% if(data.length) { %>
+    <table>
+      <thead>
         <tr>
-          <td><%= i + 1 %></td>
-          <td><%= data[i].Name %></td>
-          <td><%= data[i].Email %></td>
+          <th>No</th>
+          <th>Name</th>
+          <th>Email</th>
         </tr>
-      <% } %>
-    </tbody>
-  </table>
-
-<% } else { %>
-  <ul>
-    <li>No data ever existed.</li>
-  </ul>
-<% } %>
-
-                </div>
-                    <% if (data.length > 10) { %>
-                    <div class="button">
-                    <button id="seeAllButton">See All</button>
-                    </div>
-  <!--                     <button class="button" id="seeAllButton">See All</button> -->
-                  <% } %>
-            </div>
-            <div class="top-sales box">
-                <div class="title">Top Customers</div>
-                <ul class="top-sales-details">
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/sunglasses.jpg" alt="">-->
-                            <span class="product">Vuitton Sunglasses</span>
-                        </a>
-                        <span class="price">$1107</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/jeans.jpg" alt="">-->
-                            <span class="product">Hourglass Jeans </span>
-                        </a>
-                        <span class="price">$1567</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!-- <img src="images/nike.jpg" alt="">-->
-                            <span class="product">Nike Sport Shoe</span>
-                        </a>
-                        <span class="price">$1234</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/scarves.jpg" alt="">-->
-                            <span class="product">Hermes Silk Scarves.</span>
-                        </a>
-                        <span class="price">$2312</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/blueBag.jpg" alt="">-->
-                            <span class="product">Succi Ladies Bag</span>
-                        </a>
-                        <span class="price">$1456</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/bag.jpg" alt="">-->
-                            <span class="product">Gucci Womens's Bags</span>
-                        </a>
-                        <span class="price">$2345</span>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/addidas.jpg" alt="">-->
-                            <span class="product">Addidas Running Shoe</span>
-                        </a>
-                        <span class="price">$2345</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <!--<img src="images/shirt.jpg" alt="">-->
-                            <span class="product">Bilack Wear's Shirt</span>
-                        </a>
-                        <span class="price">$1245</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < data.length && i < 10; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= data[i].Name %></td>
+            <td><%= data[i].Email %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <ul>
+      <li>No data existed.</li>
+    </ul>
+  <% } %>
+  </div>
+  <% if (data.length > 10) { %>
+    <div class="button">
+      <button id="seeAllButton">See All</button>
     </div>
+  <% } %>
+
+</div>
+
+ <div class="top-sales box">
+                <div class="title">Top Products</div>
+                <ul class="top-sales-details">
+  <% if(products.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Product</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var j = 0; j < products.length && j < 10; j++) { %>
+          <tr>
+            <td><%= j + 1 %></td>
+            <td><%= products[j].ProductName %></td>
+            <td><%= products[j].Price %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <ul>
+      <li>No products found.</li>
+    </ul>
+  <% } %>
+</div>
+</div>
 </section>
 
 <script>

@@ -37,6 +37,15 @@ connection.connect(function(err){
 router.get('/',function(request,response,next) {
     try {
         const error = request.query.error;
+        response.render('Main', { error });
+    } catch(err) {
+        response.render('error', { error: err });
+    }
+});
+
+router.get('/Login',function(request,response,next) {
+    try {
+        const error = request.query.error;
         response.render('Login', { error });
     } catch(err) {
         response.render('error', { error: err });
@@ -86,7 +95,7 @@ router.post('/oauth', function(request,response) {
 							}
 						});
 					} else {
-                     response.redirect('/');
+                     response.redirect('/Login');
 					}
 				} else {
 					// Authenticate the user
@@ -96,13 +105,13 @@ router.post('/oauth', function(request,response) {
 					response.redirect('/home');
 				}
 			} else {
-			     response.redirect('/?error=Invalid Username and Password!');
+			     response.redirect('/Login?error=Invalid Username and Password!');
 			}
 			response.end();
 		});
 
      } else {
-        response.redirect('/?error=Please enter Username and Password!');
+        response.redirect('/Login?error=Please enter Username and Password!');
 		response.end();
 	}
 });
@@ -137,7 +146,7 @@ router.get('/auth/facebook',
     passport.authenticate('facebook', { authType: 'reauthenticate', scope: ['user_friends', 'manage_pages'] }));
 
 router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
+  passport.authenticate('facebook', { failureRedirect: '/Login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('UserPage');
@@ -147,7 +156,7 @@ router.get('/auth/github',
   passport.authenticate('github', { scope: [ 'user:email' ] }));
 
 router.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/' }),
+  passport.authenticate('github', { failureRedirect: '/Login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('UserPage');
@@ -157,7 +166,7 @@ function isLoggedIn(req,res,next){
    if (request.isAuthenticated()) {
       return next();
    }
-   response.redirect('/');
+   response.redirect('/Login');
    }
 
 router.get('/home',isLoggedIn,function(request,response){
@@ -202,7 +211,7 @@ router.post('/register', (request, response) => {
 
     if (Password !== passwordConfirm) {
         response.render('error',{ message:'Password dont match'},(err, html) => {
-        response.redirect('/');
+        response.redirect('/Login');
         });
     } else {
         connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,syst: syst,Name: Name,Password: Password, Email: Email}, (err, results) => {
@@ -210,33 +219,25 @@ router.post('/register', (request, response) => {
                 response.render('error', { error: err });
             } else {
               response.render('Create_success',{toast: true}, (err, html) => {
-                  response.redirect('/');
+                  response.redirect('/Login');
               });
           }
         });
     }
 });
-//router.get('/logout', function(request, response) {
-//  request.logout(function(err) {
-//    if (err) {
-//      console.error('Error logging out:', err);
-//      return next(err);
-//    }
-//    request.session.destroy(function(err) {
-//      if (err) {
-//        console.error('Error destroying session:', err);
-//        return next(err);
-//      }
-//      response.redirect('/?error=Successfully Signed Out');
-//    });
-//  });
-//});
-
-
-router.post('/logout', function(req, res, next){
-  req.logout(function(err) {
-    if (err) { return next(err); }
-    res.redirect('/?error=Successfully Signed Out');
+router.get('/logout', function(request, response) {
+  request.logout(function(err) {
+    if (err) {
+      console.error('Error logging out:', err);
+      return next(err);
+    }
+    request.session.destroy(function(err) {
+      if (err) {
+        console.error('Error destroying session:', err);
+        return next(err);
+      }
+      response.redirect('/Login?error=Successfully Signed Out');
+    });
   });
 });
 

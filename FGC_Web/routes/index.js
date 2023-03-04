@@ -13,7 +13,6 @@ router.use(session({
 	name: 'google-auth-session',
     	keys: ['key1', 'key2']
 	}
-
 }));
 router.use(passport.initialize());
 router.use(passport.session());

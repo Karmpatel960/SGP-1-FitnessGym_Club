@@ -177,6 +177,13 @@ router.get('/home',function(request,response){
         }
 
 });
+
+router.get('/classes',function(request,response){
+
+            response.render('classes');
+
+
+});
 //
 //req.login(user, function(err) {
 //  if (err) { return next(err); }

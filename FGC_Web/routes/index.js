@@ -178,6 +178,13 @@ router.get('/home',function(request,response){
 
 });
 
+router.get('/class',function(request,response){
+
+            response.render('class-details');
+
+
+});
+
 router.get('/classes',function(request,response){
 
             response.render('classes');

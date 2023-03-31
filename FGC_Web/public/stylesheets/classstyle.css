@@ -7,6 +7,13 @@
   gap: 1.5rem;
 }
 
+.center {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
 .footer .box-container .box h3 {
   font-size: 2.2rem;
   color: #fff;
@@ -36,14 +43,14 @@
 }
 
 .footer .box-container .box .share {
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
 .footer .box-container .box .share i {
   height: 4.5rem;
   width: 4.5rem;
   line-height: 4.5rem;
-  font-size: 1.7rem;
+  font-size: 2rem;
   color: #fff;
   background: #111;
   border-radius: 50%;
@@ -60,13 +67,13 @@
   width: 100%;
   background: #111;
   padding: 1.2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #ebe2cb;
   text-transform: none;
 }
 
 .credit {
-  font-size: 2rem;
+  font-size: 1rem;
   text-align: center;
   padding: 2rem;
   color: #041333;
@@ -156,6 +163,7 @@ body {
 	font-family: "Muli", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+	 background: #041333;
 }
 
 h1,
@@ -704,7 +712,7 @@ ol {
 -----------------------*/
 
 .choseus-section {
-	background: #0a0a0a;
+	background: #041333;
 	padding-bottom: 70px;
 }
 
@@ -836,6 +844,7 @@ ol {
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
+	color : #041333;
 }
 
 .bs-text.service-banner .bt-tips {
@@ -1057,7 +1066,7 @@ ol {
 -----------------------*/
 
 .team-section {
-	background: #151515;
+	background: #041333;
 }
 
 .team-section.team-page {
@@ -1180,7 +1189,7 @@ ol {
 -----------------------*/
 
 .gettouch-section {
-	background: #0a0a0a;
+	background: #041333;
 	padding: 30px 0 15px;
 }
 
@@ -1249,7 +1258,7 @@ ol {
 -----------------------*/
 
 .footer-section {
-	background: #000000;
+	background: #14333;
 	padding-top: 50px;
 }
 
@@ -1358,6 +1367,74 @@ ol {
 /*---------------------
   Breadcrumb Section
 -----------------------*/
+
+
+.trainers .box-container {
+padding:50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(29rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(29rem, 1fr));
+  gap: 1.5rem;
+}
+
+.trainers .box-container .box {
+  height: 40rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.trainers .box-container .box:hover .content {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.trainers .box-container .box img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.trainers .box-container .box .content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 2rem;
+  -webkit-transform: translateY(6.5rem);
+          transform: translateY(6.5rem);
+}
+
+.trainers .box-container .box .content span {
+  font-size: 1.5rem;
+  color: #f95b5b;
+}
+
+.trainers .box-container .box .content h3 {
+  font-size: 2rem;
+  color: #ebe2cb;
+  padding-top: .5rem;
+}
+
+.trainers .box-container .box .content .share {
+  padding-top: 2rem;
+  margin-top: 1.5rem;
+  border-top: 0.1rem solid #aaa;
+}
+
+.trainers .box-container .box .content .share a {
+  font-size: 2rem;
+  color: #fff;
+  margin-right: 1.5rem;
+}
+
+.trainers .box-container .box .content .share a:hover {
+  color: #f00;
+}
+
+
 
 .breadcrumb-section {
 	height: 500px;
@@ -1621,7 +1698,7 @@ ol {
 -----------------------*/
 
 .class-timetable-section {
-	background: #151515;
+	background: #041333;
 }
 
 .class-timetable-section.class-details-timetable {
@@ -1713,7 +1790,7 @@ ol {
 }
 
 .class-timetable.details-timetable td span {
-	color: #363636;
+	color: #ff0000;
 }
 
 .class-timetable.details-timetable td.hover-dp h5 {
@@ -1746,13 +1823,13 @@ ol {
 }
 
 .class-timetable table thead {
-	border-bottom: 1px solid #363636;
+	border-bottom: 1px solid #ff0000;
 }
 
 .class-timetable table thead tr th {
 	font-size: 14px;
 	color: #ffffff;
-	background: #f36100;
+	background: #ff0000;
 	border-right: 1px solid #363636;
 	padding: 15px 0;
 	font-weight: 400;
@@ -1765,7 +1842,7 @@ ol {
 
 .class-timetable table tbody tr td.class-time {
 	font-size: 12px;
-	color: #f36100;
+	color: #ff0000;
 	background: #000000;
 	border: 1px solid #363636;
 }
@@ -1820,7 +1897,7 @@ ol {
 -----------------------*/
 
 .class-details-section {
-	background: #151515;
+	background: #041333;
 	padding-bottom: 60px;
 }
 
@@ -2185,7 +2262,7 @@ ol {
 -----------------------*/
 
 .blog-section {
-	background: #151515;
+	background: #14333;
 }
 
 .blog-section .sidebar-option {
@@ -3373,3 +3450,16 @@ ol {
 		font-size: 28px;
 	}
 }
+#myImage {
+        width: 800px;
+        height: 600px;
+        background-color: blue;
+        object-fit: none;
+        object-position: left top;
+        border: 2px solid black;
+    }
+   .breadcrumb-section.set-bg {
+       background-image: url('https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=allhhea');
+       background-size: cover;
+       background-position: center center;
+   }

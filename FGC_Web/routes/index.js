@@ -4,6 +4,9 @@ const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 require('./passport');
 router.use(session({
 	secret: 'secret',
@@ -16,6 +19,7 @@ router.use(session({
 }));
 router.use(passport.initialize());
 router.use(passport.session());
+
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -169,9 +173,9 @@ function isLoggedIn(req,res,next){
    }
 
 router.get('/home',function(request,response){
-
+ const userName = 'John';
     if (request.session.loggedin) {
-            response.render('UserPage');
+            response.render('UserPage',{ userName: userName });
         } else {
             response.render('Login');
         }
@@ -180,17 +184,114 @@ router.get('/home',function(request,response){
 
 router.get('/class',function(request,response){
 
+    if (request.session.loggedin) {
             response.render('class-details');
+        } else {
+            response.render('Login');
+        }
+});
+
+router.get('/blog',function(request,response){
+
+    if (request.session.loggedin) {
+            response.render('Blogs');
+        } else {
+            response.render('Login');
+        }
+
 
 
 });
 
-router.get('/classes',function(request,response){
+router.get('/chat',function(request,response){
 
-            response.render('classes');
+            response.render('chat');
 
 
 });
+
+router.get('/cart',function(request,response){
+
+            response.render('cart');
+
+});
+
+//router.get('/totalorder',function(request,response){
+//
+//            response.render('totalorder');
+//
+//});
+
+router.get('/team',function(request,response){
+
+            response.render('team');
+
+});
+
+router.get('/shop', (req, res) => {
+  // write SQL query to fetch product data
+if (req.session.loggedin) {
+  const userName = 'John';
+  const productsQuery = 'SELECT * FROM loginuser.productdata;';
+
+  // execute query and pass results to view
+  connection.query(productsQuery, (err, rows) => {
+    if (err) throw err;
+    res.render('Shop', { userName: userName, products: rows });
+  });
+   } else {
+              res.render('Login');
+          }
+});
+router.get('/adminshop', (req, res) => {
+  // write SQL query to fetch product data
+if (req.session.loggedin) {
+  const userName = 'John';
+  const productsQuery = 'SELECT * FROM loginuser.productdata;';
+
+  // execute query and pass results to view
+  connection.query(productsQuery, (err, rows) => {
+    if (err) throw err;
+    res.render('adminshop', { userName: userName, products: rows });
+  });
+   } else {
+              res.render('Login');
+          }
+});
+
+
+router.post('/add-stock', (req, res) => {
+  const productId = req.body.productId;
+  const quantity = req.body.quantity;
+
+  const query = `UPDATE loginuser.productdata SET stock = stock + ? WHERE id = ?`;
+  connection.query(query, [quantity, productId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error adding stock to product');
+    } else {
+      res.redirect('/products');
+    }
+  });
+});
+
+router.post('/addtocart', (req, res) => {
+  const user_id = 232; // replace with actual
+  var productName = req.body.product || "Product";
+
+  const quantity = req.body.quantity || 1;
+  connection.query('INSERT INTO loginuser.carttab SET ?', { user_id:user_id, product_Name:productName, quantity:quantity},(err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error adding item to cart');
+    } else {
+      res.redirect('/cart');
+    }
+  });
+});
+
+
+
 //
 //req.login(user, function(err) {
 //  if (err) { return next(err); }
@@ -261,6 +362,20 @@ router.get('/logout', function(request, response) {
   });
 });
 
+router.get('/totalorder/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  // Retrieve the orders for the specified user from the carttab table
+  connection.query('SELECT * FROM loginuser.cart_table WHERE user_id = ?', [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving orders');
+    } else {
+      const orders = results;
+      res.render('totalorder', { userId, orders });
+    }
+  });
+});
 
 
 

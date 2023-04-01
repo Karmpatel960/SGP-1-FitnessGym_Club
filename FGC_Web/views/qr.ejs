@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OTP QR Code</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  </head>
+  <body>
+    <h1>OTP QR Code Example</h1>
+    <div id="qr-code"></div>
+
+    <script>
+      const qr = new QRious({
+        element: document.getElementById('qr-code'),
+        value: '<%= otpUri %>',
+        size: 300
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Profile</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/barfiller/0.7.4/barfiller.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slicknav/1.0.10/slicknav.min.css">
+
+        <link rel="stylesheet" href="stylesheets/classstyle.css" type="text/css">
+    <style>
+
+
+    /* Make profile image circular */
+    * {
+    color: white;
+
+}
+    img {
+    border-radius: 50%;
+    }
+
+    /* Style for Change Password button */
+    button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    /* Style for password change form */
+    form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+
+
+
+    input[type="password"] {
+    padding: 1px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+    margin-top: 1px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+  body {
+    background-color: #041333 /* Replace with your desired background color */
+  }
+  header {
+      background-color: white;
+    }
+      section {
+        margin-top: 0; /* Remove margin top */
+      }
+
+      .product {
+        height: 450px;
+      }
+
+      .list-group {
+        color: white;
+      }
+
+      .list-group-item {
+        background-color: #white;
+      }
+      .list-group-item:hover {
+        background-color: #ebe2cb;
+        color: white;
+      }
+      .custom {
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+      }
+
+    </style>
+
+</head>
+<body>
+  <header  class="p-3 mb-3 border-bottom">
+      <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+              <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                  <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="60">
+              </a>
+
+              <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                       <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
+                              <li><a href="/class" class="nav-link px-2 link-dark">Classes</a></li>
+                              <li><a href="/shop" class="nav-link px-2 link-dark">Shop</a></li>
+                              <li><a href="/blog" class="nav-link px-2 link-dark">Blog</a></li>
+                              <li><a href="/chat" class="nav-link px-2 link-dark">Chat</a></li>
+              </ul>
+
+              <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+              </form>
+
+              <div class="dropdown text-end">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  </a>
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                      <li><a class="dropdown-item" href="/class">Classes</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="/logout" method = "POST">Sign out</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="custom">
+
+  <h1 style="color:white;">Customer Profile</h1>
+
+  <img src="images/blank-profile-picture-973460_960_720.webp" width="200" height="200">
+  <h2 style="color:white;">Name: John Doe</h2>
+  <h2 style="color:white;">Plan: Basic</h2>
+  <button onclick="document.getElementById('passwordBox').style.display='block'">Change Password</button>
+  <div id="passwordBox" style="display:none">
+      <h3>Change Password</h3>
+      <form>
+          <label for="currentPassword">Current Password:</label>
+          <input type="password" id="currentPassword" name="currentPassword"><br><br>
+          <label for="newPassword">New Password:</label>
+          <input type="password" id="newPassword" name="newPassword"><br><br>
+          <label for="confirmPassword">Confirm New Password:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+          <input type="submit" value="Submit">
+      </form>
+  </div>
+</div>
+</body>
+</html>

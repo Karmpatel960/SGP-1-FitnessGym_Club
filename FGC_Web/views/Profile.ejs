@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="images/FGC (1).png" type="image/icon type">
+  <link rel="icon" href="images/FGC (1).png" type="image/icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheets/UserStyle.css">
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/classstyle.css" type="text/css">
+    <title>Customer Profile</title>
+
+</head>
+
+<body>
+<div class="sidebar">
+<!--     <div class="logo-details"> -->
+<!--          <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="60"> -->
+<!--     </div> -->
+<!--     <ul class="nav-links"> -->
+<!--         <li> -->
+<!--             <a href="#" class="active"> -->
+<!--                 <i class='bx bx-grid-alt' ></i> -->
+<!--                 <span class="links_name">Dashboard</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--         <li> -->
+<!--             <a href="/adminshop"> -->
+<!--                 <i class='bx bx-box' ></i> -->
+<!--                 <span class="">Product</span> -->
+<!--             </a> -->
+<!--         </li> -->
+
+<!--         <li> -->
+<!--             <a href="/totalorder/2"> -->
+<!--                 <i class='bx bx-book-alt' ></i> -->
+<!--                 <span class="links_name">Total order</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--         <li> -->
+<!--             <a href="/team"> -->
+<!--                 <i class='bx bx-user' ></i> -->
+<!--                 <span class="links_name">Team</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--         <li> -->
+<!--             <a href="#"> -->
+<!--                 <i class='bx bx-message' ></i> -->
+<!--                 <span class="links_name">Messages</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--         <li> -->
+<!--             <a href="/profile"> -->
+<!--                 <i class='bx bx-cog' ></i> -->
+<!--                 <span class="links_name">Setting</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--         <li class="log_out"> -->
+<!--             <a href="/logout"> -->
+<!--                 <i class='bx bx-log-out'></i> -->
+<!--                 <span class="links_name">Log out</span> -->
+<!--             </a> -->
+<!--         </li> -->
+<!--     </ul> -->
+<!-- </div> -->
+<section class="home-section">
+    <nav>
+        <div class="sidebar-button">
+            <i class='bx bx-menu sidebarBtn'></i>
+             <img src="images/imageedit_1_7997835580.png" height="200">
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <i class='bx bx-search' ></i>
+        </div>
+        <div class="profile-details">
+            <!--<img src="images/profile.jpg" alt="">-->
+            <span class="admin_name">Prem Shahi</span>
+            <i class='bx bx-chevron-down' ></i>
+        </div>
+    </nav>
+
+ <div class="custom">
+
+  <h1 style="color:white; margin-top:100px;">Customer Profile</h1>
+
+  <img src="images/blank-profile-picture-973460_960_720.webp" width="200" height="200">
+  <h2 style="color:white;">Name: Prem Shahi</h2>
+  <h2 style="color:white;">Plan: Admin</h2>
+  <button onclick="document.getElementById('passwordBox').style.display='block'">Change Password</button>
+  <div id="passwordBox" style="display:none">
+      <h3>Change Password</h3>
+      <form>
+          <label for="currentPassword">Current Password:</label>
+          <input type="password" id="currentPassword" name="currentPassword"><br><br>
+          <label for="newPassword">New Password:</label>
+          <input type="password" id="newPassword" name="newPassword"><br><br>
+          <label for="confirmPassword">Confirm New Password:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+          <input type="submit" value="Submit">
+      </form>
+  </div>
+</div>
+
+
+</body>
+<script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+
+var seeAllButton = document.getElementById("seeAllButton");
+  var tableRows = document.querySelectorAll("#dataTableBody tr");
+
+  if (seeAllButton) {
+    seeAllButton.addEventListener("click", function() {
+      for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].style.display = "table-row";
+      }
+      seeAllButton.style.display = "none";
+    });
+  }
+          const showFormBtn = document.getElementById('show-form-btn');
+  const changePasswordForm = document.querySelector('.change-password-form');
+
+  showFormBtn.addEventListener('click', () => {
+    changePasswordForm.style.display = 'block';
+  });
+ </script>
+     <style>
+         body {
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             background-color: #f2f2f2;
+             height: 100vh;
+         }
+
+         /* CSS to style the profile picture */
+         .profile-pic {
+             border-radius: 50%;
+             width: 200px;
+             height: 200px;
+             object-fit: cover; /* This ensures that the image fills the entire circular container */
+         }
+
+         /* CSS to style the customer plan */
+         .customer-plan {
+             font-size: 24px;
+             margin-top: 20px;
+             margin-bottom: 20px;
+         }
+
+         /* CSS to style the change password form */
+         .change-password-form {
+             margin-top: 20px;
+         }
+         .change-password-form label {
+             display: block;
+             margin-bottom: 10px;
+         }
+         .change-password-form input[type="password"] {
+             padding: 5px;
+             margin-bottom: 10px;
+             border-radius: 5px;
+             border: 1px solid #ccc;
+         }
+         .change-password-form input[type="submit"] {
+             padding: 5px 10px;
+             background-color: #4CAF50;
+             color: white;
+             border-radius: 5px;
+             border: none;
+             cursor: pointer;
+         }
+               .custom {
+                 text-align: center;
+                 color: white;
+                 margin-top: 50px;
+               }
+     </style>
+</html>
+

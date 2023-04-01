@@ -5,6 +5,7 @@ const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const qrcode = require('qrcode');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 require('./passport');
@@ -35,6 +36,31 @@ connection.connect(function(err){
 
 
 
+
+
+// Define the OTP URI with the secret and issuer
+const otpURI = 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example';
+
+// Define an Express route to handle displaying the QR code
+router.get('/qr-code', async (req, res) => {
+  try {
+    // Generate the QR code as a data URL
+    const qrCodeDataURL = await qrcode.toDataURL(otpURI);
+
+    // Send the response with the QR code image
+    res.send(`<img src="${qrCodeDataURL}"/>`);
+  } catch (error) {
+    // Handle any errors that occur
+
+    console.error(error);
+    res.status(500).send('Error generating QR code');
+  }
+});
+
+
+router.get('/qrcode', async (req, res) => {
+    res.render("qr");
+       });
 
 // http://localhost:3000/
 router.get('/',function(request,response,next) {
@@ -129,14 +155,17 @@ router.get('/auth/google' , passport.authenticate('google', { scope:
 // Auth Callback
 router.get( '/auth/callback',
 	passport.authenticate( 'google', {
-		successRedirect: '/auth/callback/success',
+		successRedirect: '/userp',
 		failureRedirect: '/auth/callback/failure'
 }));
 
+router.get('/userp' , (req , res) => {
+	res.render('UserPage');
+});
 // Success
 router.get('/auth/callback/success' , (req , res) => {
-	if(!req.user)
-		res.redirect('/auth/callback/failure');
+//	if(!req.user)
+//		res.redirect('/auth/callback/failure');
 	res.render('UserPage');
 });
 
@@ -228,6 +257,18 @@ router.get('/team',function(request,response){
 
 });
 
+
+router.get('/profile',function(request,response){
+
+            response.render('profile');
+
+});
+
+router.get('/clprofile',function(request,response){
+
+            response.render('clientprofile');
+
+});
 router.get('/shop', (req, res) => {
   // write SQL query to fetch product data
 if (req.session.loggedin) {

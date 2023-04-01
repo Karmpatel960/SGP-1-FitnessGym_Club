@@ -29,6 +29,7 @@
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-instagram": "^1.0.0",
+    "qrcode": "^1.5.1",
     "twilio-chat": "^6.0.0"
   }
 }

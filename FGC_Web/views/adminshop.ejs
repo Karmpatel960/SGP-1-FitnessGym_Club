@@ -33,7 +33,7 @@
         </li>
 
         <li>
-            <a href="/totalorder/2">
+            <a href="/totalorder">
                 <i class='bx bx-book-alt' ></i>
                 <span class="links_name">Total order</span>
             </a>
@@ -42,12 +42,6 @@
             <a href="/team">
                 <i class='bx bx-user' ></i>
                 <span class="links_name">Team</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-message' ></i>
-                <span class="links_name">Messages</span>
             </a>
         </li>
 
@@ -86,20 +80,22 @@
         <div class="row">
           <div class="col-md-8" style=" margin-top: 100px;">
             <div class="row"  >
-              <% products.forEach(function(product) { %>
-    <div class="col-md-4 d-flex align-items-stretch" >
-      <div class="card mb-4 box-shadow">
-        <img class="card-img-top" src="<%= product.image_link %>" alt="Product Image" />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-black"><%= product.name %></h5>
-          <p class="card-text text-black"><%= product.description %></p>
-          <h6 class="card-subtitle mb-2 text-black">$<%= product.price %></h6>
-          <button class="btn btn-primary mt-auto" href="/logout" method = "POST">Add Stock</button>
-        </div>
-      </div>
-    </div>
+ <% products.forEach(function(product) { %>
+   <div class="col-md-4 d-flex align-items-stretch" >
+     <div class="card mb-4 box-shadow">
+       <img class="card-img-top" src="<%= product.image_url %>" alt="Product Image" />
+       <div class="card-body d-flex flex-column">
+         <h5 class="card-title text-black"><%= product.product_name %></h5>
+         <p class="card-text text-black"><%= product.description %></p>
+         <h6 class="card-subtitle mb-2 text-black">$<%= product.price %></h6>
+         <form action="/addstock" method="POST">
+           <button type="submit" class="btn btn-primary mt-auto">Add Stock</button>
+         </form>
+       </div>
+     </div>
+   </div>
+ <% }); %>
 
-              <% }); %>
             </div>
           </div>
           <div class="col-md-4 border">

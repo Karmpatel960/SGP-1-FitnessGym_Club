@@ -17,19 +17,19 @@
 
 
 <body>
-<header  class="p-3 mb-3 border-bottom">
+<header class="p-3 mb-3 bottom-line" style="width: 100%">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="50">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-3 text-dark text-decoration-none">
+        <img src="images/photo/imageedit_1_7997835581.png" width="150" height="60" alt="">
       </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
-        <li><a href="/class" class="nav-link px-2 link-dark">Classes</a></li>
-        <li><a href="/shop" class="nav-link px-2 link-dark">Shop</a></li>
-        <li><a href="/blog" class="nav-link px-2 link-dark">Blog</a></li>
-        <li><a href="/Chat" class="nav-link px-2 link-dark">Chat</a></li>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" >
+      <li><a href="/home" class="nav-link px-2 link-dark text-light" >Home</a></li>
+
+        <li><a href="/class" class="nav-link px-2 link-dark text-light">Classes</a></li>
+        <li><a href="/shop" class="nav-link px-2 link-dark text-light">Shop</a></li>
+        <li><a href="/blog" class="nav-link px-2 link-dark text-light">Blog</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -40,9 +40,9 @@
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
         </a>
-        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item" href="/class">Classes</a></li>
-          <li><a class="dropdown-item" href="/clprofile">Settings</a></li>
+          <li><a class="dropdown-item" href="/order">Your Orders</a></li>
           <li><a class="dropdown-item" href="/clprofile">Profile</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="/logout" method = "POST">Sign out</a></li>
@@ -56,9 +56,10 @@
     <img src="images/Screenshot_20230303_102051.png" class="img-fluid">
   </a>
 </section>
-<section  class="mb-5">
-  <li>Welcome, <%= userName %>!</li>
+<section class="mb-5 text-center">
+  <li class="welcome-text">Welcome, <%= userName %>!</li>
 </section>
+
 <section class="choseus-section spad">
   <div class="container">
     <div class="row">
@@ -74,32 +75,29 @@
         <div class="cs-item">
           <span class="iconify"><img src = "dumbbell.png"></span>
           <h4>Modern equipment</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            dolore facilisis.</p>
+          <p>Our gym is equipped with state-of-the-art machines and equipment, including cardio machines, weight machines, and free weights. We regularly update our equipment to ensure that our members have access to the latest technology for their workouts.</p>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="cs-item">
           <span class="iconify"><img src = "treadmill (1).png"></span>
           <h4>Healthy nutrition plan</h4>
-          <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-            facilisis.</p>
+          <p> We offer a variety of healthy meal plans designed to meet the nutritional needs of our members. Our nutrition experts work with members to create personalized plans based on their goals and dietary preferences. Our meals are made from fresh, wholesome ingredients and are designed to fuel your body for optimal performance..</p>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="cs-item">
           <span class="iconify"><img src = "drink.png"></span>
           <h4>Proffesponal training plan</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            dolore facilisis.</p>
+          <p>Our trainers are certified professionals with years of experience in the fitness industry. They work with members to create customized workout plans that are tailored to their individual needs and goals. </p>
+
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="cs-item">
           <span class="iconify"><img src="heart.png"></span>
           <h4>Unique to your needs</h4>
-          <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-            facilisis.</p>
+          <p>At our gym, we understand that everyone has unique fitness goals and needs. That's why we offer a personalized approach to fitness, with customized workout plans, nutrition plans, and one-on-one coaching. Our goal is to help each member achieve their unique fitness goals in a way that works for them.</p>
         </div>
       </div>
     </div>
@@ -178,9 +176,11 @@
   body {
     background-color: #041333 /* Replace with your desired background color */
   }
-  header {
-      background-color: white;
-    }
+header {
+  background-color: linear-gradient(to bottom, #014333, #041333);
+  border-bottom: 1px solid #ccc;
+}
+
       section {
         margin-top: 0; /* Remove margin top */
       }
@@ -194,12 +194,28 @@
       }
 
       .list-group-item {
-        background-color: #white;
+        background-color: #ebe2cb;
       }
       .list-group-item:hover {
         background-color: #ebe2cb;
         color: white;
       }
 
+    .text-light {
+        color: #ebe2cb;
+    }
+
+.welcome-text {
+  color: white;
+  list-style: none;
+  font-size: 32px; /* adjust the size as needed */
+  font-weight: bold;
+}
+
+.dropdown-toggle {
+  color: white;
+}
+
 </style>
+
 </html>

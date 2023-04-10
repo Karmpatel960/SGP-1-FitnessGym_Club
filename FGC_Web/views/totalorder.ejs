@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Total Orders</title>
-      <link rel="stylesheet" href="stylesheets/UserStyle.css">
-        <link rel="icon" href="images/FGC (1).png" type="image/icon type">
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-          <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-          <link rel="stylesheet" href="stylesheets/classstyle.css" type="text/css">
-          <link rel="stylesheet" href="stylesheets/UserStyle.css">
-      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="icon" href="images/FGC (1).png" type="image/icon type">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>FITNESS GYM CLUB</title>
+    <link rel="icon" href="images/FGC (1).png" type="image/icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/classstyle.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/UserStyle.css">
 </head>
 <body>
 <div class="sidebar">
@@ -26,7 +20,7 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="#" class="active">
+            <a href="/admin" class="active">
                 <i class='bx bx-grid-alt' ></i>
                 <span class="links_name">Dashboard</span>
             </a>
@@ -34,12 +28,12 @@
         <li>
             <a href="/adminshop">
                 <i class='bx bx-box' ></i>
-                <span class="">Product</span>
+                <span class="links_name">Product</span>
             </a>
         </li>
 
         <li>
-            <a href="/totalorder/2">
+            <a href="/totalorder">
                 <i class='bx bx-book-alt' ></i>
                 <span class="links_name">Total order</span>
             </a>
@@ -50,14 +44,9 @@
                 <span class="links_name">Team</span>
             </a>
         </li>
+
         <li>
-            <a href="#">
-                <i class='bx bx-message' ></i>
-                <span class="links_name">Messages</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
+            <a href="/profile">
                 <i class='bx bx-cog' ></i>
                 <span class="links_name">Setting</span>
             </a>
@@ -70,7 +59,7 @@
         </li>
     </ul>
 </div>
-<section class="home-section">
+<section class="home-section" >
     <nav>
         <div class="sidebar-button">
             <i class='bx bx-menu sidebarBtn'></i>
@@ -86,31 +75,129 @@
             <i class='bx bx-chevron-down' ></i>
         </div>
     </nav>
-
-  <div class="container-fluid">
-    <h1 class="my-5">Total Orders for User ID <%= userId %></h1>
-    <table class="table table-striped table-hover">
+    <section class="mb-5">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8" style=" margin-top: 100px;">
+            <div class="row"  >
+<div class="container" width="100%">
+  <h1 style="color: white;">Total Orders</h1>
+  <% if (orders.length > 0) { %>
+    <table class="table" style="color: white;">
       <thead>
         <tr>
           <th>Order ID</th>
-          <th>User ID</th>
           <th>Product Name</th>
           <th>Quantity</th>
-          <th>created_at</th>
+          <th>Order Status</th>
+          <th>Date Ordered</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% orders.forEach(function(order) { %>
+        <% orders.forEach(order => { %>
           <tr>
             <td><%= order.id %></td>
-            <td><%= order.user_id %></td>
-            <td><%= order.product_name %></td>
+            <td><%= order.product_id %></td>
             <td><%= order.quantity %></td>
-            <td><%= order.created_at %></td>
+            <td><%= order.status%></td>
+            <td><%= order.created_at.toLocaleString() %></td>
+            <td>
+                        <% if (order.status === 'Pending') { %>
+                         <span class="text-success">Completed</span>
+                        <% } else { %>
+                          <form method="post" action="/update-status">
+                                                    <input type="hidden" name="orderId" value="<%= order.id %>">
+                                                    <button type="submit" class="btn btn-success">Mark as Completed</button>
+                                                  </form>
+
+                        <% } %>
+                      </td>
           </tr>
         <% }); %>
       </tbody>
     </table>
-  </div>
+  <% } else { %>
+    <p>No orders found.</p>
+  <% } %>
+</div>
+            </div>
+          </div>
+    </section>
+
+</section>
+
+
 </body>
+<style>
+  body {
+    background-color: #041333 /* Replace with your desired background color */
+  }
+  header {
+      background-color: white;
+    }
+      section {
+        margin-top: 0; /* Remove margin top */
+      }
+
+      .product {
+        height: 450px;
+      }
+
+      .list-group {
+        color: white;
+      }
+
+      .list-group-item {
+        background-color: #white;
+      }
+      .list-group-item:hover {
+        background-color: #ebe2cb;
+        color: white;
+      }
+
+</style>
+<script>
+function addToCart() {
+  const productId = document.getElementById('product-id').value;
+  const quantity = document.getElementById('quantity').value || 1;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/add-to-cart');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      window.location.href = '/cart';
+    } else {
+      console.error('Error adding item to cart:', xhr.statusText);
+      alert('Error adding item to cart');
+    }
+  };
+  xhr.send(JSON.stringify({productId, quantity}));
+}
+
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+
+var seeAllButton = document.getElementById("seeAllButton");
+  var tableRows = document.querySelectorAll("#dataTableBody tr");
+
+  if (seeAllButton) {
+    seeAllButton.addEventListener("click", function() {
+      for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].style.display = "table-row";
+      }
+      seeAllButton.style.display = "none";
+    });
+  }
+
+</script>
+
 </html>

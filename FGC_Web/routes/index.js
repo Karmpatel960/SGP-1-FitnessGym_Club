@@ -4,10 +4,10 @@ const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
-const bodyParser = require('body-parser');
-const qrcode = require('qrcode');
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+//const bodyParser = require('body-parser');
+//const qrcode = require('qrcode');
+//router.use(bodyParser.urlencoded({ extended: true }));
+//router.use(bodyParser.json());
 require('./passport');
 router.use(session({
 	secret: 'secret',
@@ -38,29 +38,29 @@ connection.connect(function(err){
 
 
 
-// Define the OTP URI with the secret and issuer
-const otpURI = 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example';
-
-// Define an Express route to handle displaying the QR code
-router.get('/qr-code', async (req, res) => {
-  try {
-    // Generate the QR code as a data URL
-    const qrCodeDataURL = await qrcode.toDataURL(otpURI);
-
-    // Send the response with the QR code image
-    res.send(`<img src="${qrCodeDataURL}"/>`);
-  } catch (error) {
-    // Handle any errors that occur
-
-    console.error(error);
-    res.status(500).send('Error generating QR code');
-  }
-});
-
-
-router.get('/qrcode', async (req, res) => {
-    res.render("qr");
-       });
+//// Define the OTP URI with the secret and issuer
+//const otpURI = 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example';
+//
+//// Define an Express route to handle displaying the QR code
+//router.get('/qr-code', async (req, res) => {
+//  try {
+//    // Generate the QR code as a data URL
+//    const qrCodeDataURL = await qrcode.toDataURL(otpURI);
+//
+//    // Send the response with the QR code image
+//    res.send(`<img src="${qrCodeDataURL}"/>`);
+//  } catch (error) {
+//    // Handle any errors that occur
+//
+//    console.error(error);
+//    res.status(500).send('Error generating QR code');
+//  }
+//});
+//
+//
+//router.get('/qrcode', async (req, res) => {
+//    res.render("qr");
+//       });
 
 // http://localhost:3000/
 router.get('/',function(request,response,next) {
@@ -101,48 +101,36 @@ router.get('/Fog', function(request, response,next) {
      }
 });
 
-router.post('/oauth', function(request,response) {
-	// Capture the input fields
-	let username = request.body.username;
-	let password = request.body.password;
+router.post('/oauth', function(request, response) {
+  // Capture the input fields
+  let email = request.body.email;
+  let password = request.body.password;
 
-    // Define the correct username and password
-    const correctUsername = "1000"
-    const correctPassword = "password"
+  // Define the correct admin username and password
+  const adminUsername = "admin@admin.com";
+  const adminPassword = "admin123";
 
-
-	if (username && password) {
-		connection.query('SELECT * FROM loginuser.userdata WHERE username = ? AND Password = ?', [username, password], function(error, results, fields) {
-
-			if (results.length > 0) {
-				if (username === correctUsername && password === correctPassword) {
-				    request.session.loggedin = true;
-					if (request.session.loggedin) {
-						response.redirect('/admin', {}, function (err) {
-							if(err){
-							    response.render('error', { message: 'File not found' });
-							}
-						});
-					} else {
-                     response.redirect('/Login');
-					}
-				} else {
-					// Authenticate the user
-					request.session.loggedin = true;
-					request.session.username = username;
-					// Redirect to home page
-					response.redirect('/home');
-				}
-			} else {
-			     response.redirect('/Login?error=Invalid Username and Password!');
-			}
-			response.end();
-		});
-
-     } else {
-        response.redirect('/Login?error=Please enter Username and Password!');
-		response.end();
-	}
+  if (email && password) {
+    connection.query('SELECT * FROM myapp.users WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+      if (results.length > 0) {
+          if (email === adminUsername && password === adminPassword) {
+          request.session.loggedin = true;
+          response.redirect('/admin');
+         } else {
+          request.session.loggedin = true;
+          request.session.userId = results[0].id;
+          // Redirect to home page
+          response.redirect('/home');
+          }
+      } else {
+        response.redirect('/Login?error=Invalid Email or Password!');
+      }
+      response.end();
+    });
+  } else {
+    response.redirect('/Login?error=Please enter Email and Password!');
+    response.end();
+  }
 });
 
 
@@ -232,24 +220,87 @@ router.get('/blog',function(request,response){
 
 });
 
-router.get('/chat',function(request,response){
-
-            response.render('chat');
 
 
+
+router.get('/cart', function(req, res) {
+  // Get the user ID from the session req.session.userId
+  const userId = req.session.userId;
+
+  // Fetch the user's order details from the database
+  const query = `SELECT myapp.products.product_id, myapp.products.product_name, myapp.products.price, myapp.cart.quantity
+                                  FROM myapp.cart
+                                 JOIN myapp.products ON myapp.cart.product_id = myapp.products.product_id
+                                 WHERE myapp.cart.user_id = ?`;
+  connection.query(query, [userId], function(err, results) {
+    if (err) throw err;
+
+    // Calculate the total order amount
+    let orderTotal = 0;
+    results.forEach(function(detail) {
+      orderTotal += detail.price * detail.quantity;
+    });
+
+    // Render the cart template with the order details and total amount
+    res.render('cart', { orderDetails: results, orderTotal: orderTotal });
+  });
 });
 
-router.get('/cart',function(request,response){
+router.get('/order', (req, res) => {
+  const userId = req.session.userId;
 
-            response.render('cart');
-
+  // Get all orders made by the user
+  connection.query('SELECT * FROM myapp.orders WHERE user_id = ? ORDER BY created_at DESC', [userId], (err, orders) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching orders');
+    } else {
+      res.render('orders', { orders });
+    }
+  });
 });
 
-//router.get('/totalorder',function(request,response){
-//
-//            response.render('totalorder');
-//
-//});
+router.post('/checkout', (req, res) => {
+  const userId = req.session.userId;
+  const { name, address, phone } = req.body;
+
+  // Retrieve cart items for the user
+  connection.query('SELECT * FROM myapp.cart WHERE user_id = ?', [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving cart items');
+    } else {
+      // Insert new orders into orders table for each cart item
+      results.forEach((cartItem) => {
+        const { product_id, quantity } = cartItem;
+        connection.query('INSERT INTO myapp.orders (user_id, product_id, quantity,name, address, phone) VALUES (?, ?, ?, ?, ?, ?)', [userId, product_id,quantity,name, address, phone], (err, result) => {
+          if (err) {
+            console.error(err);
+            res.status(500).send('Error creating order');
+          } else {
+            // Delete item from cart
+            connection.query('DELETE FROM myapp.cart WHERE user_id = ? AND product_id = ?', [userId, product_id], (err, result) => {
+              if (err) {
+                console.error(err);
+                res.status(500).send('Error removing item from cart');
+              }
+            });
+          }
+        });
+      });
+      res.redirect('/order');
+    }
+  });
+});
+
+
+router.get('/totalorder', function(req, res) {
+  connection.query('SELECT * FROM myapp.orders', function(err, rows) {
+    if (err) throw err;
+    res.render('totalorder', { orders: rows });
+  });
+});
+
 
 router.get('/team',function(request,response){
 
@@ -270,25 +321,30 @@ router.get('/clprofile',function(request,response){
 
 });
 router.get('/shop', (req, res) => {
-  // write SQL query to fetch product data
-if (req.session.loggedin) {
-  const userName = 'John';
-  const productsQuery = 'SELECT * FROM loginuser.productdata;';
+  // Check if the user is logged in
+  if (!req.session.loggedin) {
+    res.render('Login');
+    return;
+  }
 
-  // execute query and pass results to view
-  connection.query(productsQuery, (err, rows) => {
+  // Write SQL query to fetch product data
+  const productsQuery = 'SELECT * FROM myapp.products';
+
+  // Execute query and pass results to view
+  connection.query(productsQuery, (err, products) => {
     if (err) throw err;
-    res.render('Shop', { userName: userName, products: rows });
+
+
+    res.render('shop', {products});
   });
-   } else {
-              res.render('Login');
-          }
 });
+
+
 router.get('/adminshop', (req, res) => {
   // write SQL query to fetch product data
 if (req.session.loggedin) {
   const userName = 'John';
-  const productsQuery = 'SELECT * FROM loginuser.productdata;';
+  const productsQuery = 'SELECT * FROM myapp.products;';
 
   // execute query and pass results to view
   connection.query(productsQuery, (err, rows) => {
@@ -301,27 +357,27 @@ if (req.session.loggedin) {
 });
 
 
-router.post('/add-stock', (req, res) => {
-  const productId = req.body.productId;
-  const quantity = req.body.quantity;
-
-  const query = `UPDATE loginuser.productdata SET stock = stock + ? WHERE id = ?`;
-  connection.query(query, [quantity, productId], (err, result) => {
+router.post('/addstock', (req, res) => {
+  const query = `UPDATE myapp.products SET stock = stock + 1 `;
+  connection.query(query, (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error adding stock to product');
     } else {
-      res.redirect('/products');
+      res.redirect('/admin');
     }
   });
 });
 
-router.post('/addtocart', (req, res) => {
-  const user_id = 232; // replace with actual
-  var productName = req.body.product || "Product";
 
+router.post('/addtocart', (req, res) => {
+// req.session.userId
+  const userId = req.session.userId;
+  const productId = req.body.product_id;
   const quantity = req.body.quantity || 1;
-  connection.query('INSERT INTO loginuser.carttab SET ?', { user_id:user_id, product_Name:productName, quantity:quantity},(err, result) => {
+
+  const query = 'INSERT INTO myapp.cart (user_id, product_id, quantity) VALUES (?, ?, ?)';
+  connection.query(query, [userId, productId, quantity], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error adding item to cart');
@@ -331,13 +387,6 @@ router.post('/addtocart', (req, res) => {
   });
 });
 
-
-
-//
-//req.login(user, function(err) {
-//  if (err) { return next(err); }
-//  return res.render('UserPage');
-//});
 router.get('/admin', function(request, response) {
   if (request.session.loggedin) {
     connection.query('SELECT * FROM loginuser.userdata', function(err, userRows) {
@@ -361,32 +410,29 @@ router.get('/admin', function(request, response) {
   }
 });
 
-
-
 router.post('/register', (request, response) => {
-    let Name = request.body.Name;
-    let Username = request.body.Username;
-    let Password = request.body.Password;
-    let Email = request.body.Email;
-    let passwordConfirm = request.body.passwordConfirm;
-    const syst = 'T';
-
-    if (Password !== passwordConfirm) {
+    let name = request.body.name;
+    let email = request.body.email;
+    let password = request.body.password;
+   let passwordConfirm = request.body.passwordConfirm;
+ if (password !== passwordConfirm) {
         response.render('error',{ message:'Password dont match'},(err, html) => {
         response.redirect('/Login');
         });
-    } else {
-        connection.query('INSERT INTO loginuser.userdata SET ?', { Username:Username,syst: syst,Name: Name,Password: Password, Email: Email}, (err, results) => {
+    }
+     else {
+        connection.query('INSERT INTO myapp.users (name, email, password) VALUES (?, ?, ?)', [name, email, password], (err, results) => {
             if (err) {
                 response.render('error', { error: err });
             } else {
-              response.render('Create_success',{toast: true}, (err, html) => {
-                  response.redirect('/Login');
-              });
-          }
+                response.render('create_success', { toast: true }, (err, html) => {
+                    response.redirect('/login?error=Successfully registered with email and password');
+                });
+            }
         });
     }
 });
+
 router.get('/logout', function(request, response) {
   request.logout(function(err) {
     if (err) {
@@ -403,17 +449,16 @@ router.get('/logout', function(request, response) {
   });
 });
 
-router.get('/totalorder/:userId', (req, res) => {
-  const userId = req.params.userId;
+router.post('/update-status/:orderId', (req, res) => {
+  const orderId = req.params.orderId;
+  const newStatus = req.body.status;
 
-  // Retrieve the orders for the specified user from the carttab table
-  connection.query('SELECT * FROM loginuser.cart_table WHERE user_id = ?', [userId], (err, results) => {
+  connection.query('UPDATE myapp.orders SET status = ? WHERE id = ?', [newStatus, orderId], (err, result) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error retrieving orders');
+      res.status(500).send('Error updating order status');
     } else {
-      const orders = results;
-      res.render('totalorder', { userId, orders });
+      res.redirect('/totalorder');
     }
   });
 });

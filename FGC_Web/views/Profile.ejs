@@ -1,95 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="images/FGC (1).png" type="image/icon type">
-  <link rel="icon" href="images/FGC (1).png" type="image/icon type">
+    <meta charset="UTF-8">
+    <title>FITNESS GYM CLUB</title>
+    <link rel="icon" href="images/FGC (1).png" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="stylesheets/UserStyle.css">
-      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/classstyle.css" type="text/css">
-    <title>Customer Profile</title>
-
+    <link rel="stylesheet" href="stylesheets/UserStyle.css">
 </head>
-
 <body>
 <div class="sidebar">
-<!--     <div class="logo-details"> -->
-<!--          <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="60"> -->
-<!--     </div> -->
-<!--     <ul class="nav-links"> -->
-<!--         <li> -->
-<!--             <a href="#" class="active"> -->
-<!--                 <i class='bx bx-grid-alt' ></i> -->
-<!--                 <span class="links_name">Dashboard</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--         <li> -->
-<!--             <a href="/adminshop"> -->
-<!--                 <i class='bx bx-box' ></i> -->
-<!--                 <span class="">Product</span> -->
-<!--             </a> -->
-<!--         </li> -->
+    <div class="logo-details">
+         <img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="80" width="60">
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a href="/admin" class="active">
+                <i class='bx bx-grid-alt' ></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="/adminshop">
+                <i class='bx bx-box' ></i>
+                <span class="links_name">Product</span>
+            </a>
+        </li>
 
-<!--         <li> -->
-<!--             <a href="/totalorder/2"> -->
-<!--                 <i class='bx bx-book-alt' ></i> -->
-<!--                 <span class="links_name">Total order</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--         <li> -->
-<!--             <a href="/team"> -->
-<!--                 <i class='bx bx-user' ></i> -->
-<!--                 <span class="links_name">Team</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--         <li> -->
-<!--             <a href="#"> -->
-<!--                 <i class='bx bx-message' ></i> -->
-<!--                 <span class="links_name">Messages</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--         <li> -->
-<!--             <a href="/profile"> -->
-<!--                 <i class='bx bx-cog' ></i> -->
-<!--                 <span class="links_name">Setting</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--         <li class="log_out"> -->
-<!--             <a href="/logout"> -->
-<!--                 <i class='bx bx-log-out'></i> -->
-<!--                 <span class="links_name">Log out</span> -->
-<!--             </a> -->
-<!--         </li> -->
-<!--     </ul> -->
-<!-- </div> -->
-<section class="home-section">
-    <nav>
-        <div class="sidebar-button">
-            <i class='bx bx-menu sidebarBtn'></i>
-             <img src="images/imageedit_1_7997835580.png" height="200">
-        </div>
-        <div class="search-box">
-            <input type="text" placeholder="Search...">
-            <i class='bx bx-search' ></i>
-        </div>
-        <div class="profile-details">
-            <!--<img src="images/profile.jpg" alt="">-->
-            <span class="admin_name">Prem Shahi</span>
-            <i class='bx bx-chevron-down' ></i>
-        </div>
-    </nav>
+        <li>
+            <a href="/totalorder">
+                <i class='bx bx-book-alt' ></i>
+                <span class="links_name">Total order</span>
+            </a>
+        </li>
+        <li>
+            <a href="/team">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">Team</span>
+            </a>
+        </li>
 
+        <li>
+            <a href="/profile">
+                <i class='bx bx-cog' ></i>
+                <span class="links_name">Setting</span>
+            </a>
+        </li>
+        <li class="log_out">
+            <a href="/logout">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+            </a>
+        </li>
+    </ul>
+</div>
  <div class="custom">
 
-  <h1 style="color:white; margin-top:100px;">Customer Profile</h1>
+  <h1 style="color:white;">Customer Profile</h1>
 
   <img src="images/blank-profile-picture-973460_960_720.webp" width="200" height="200">
-  <h2 style="color:white;">Name: Prem Shahi</h2>
-  <h2 style="color:white;">Plan: Admin</h2>
+  <h2 style="color:white;">Name: John Doe</h2>
+  <h2 style="color:white;">Plan: Basic</h2>
   <button onclick="document.getElementById('passwordBox').style.display='block'">Change Password</button>
   <div id="passwordBox" style="display:none">
       <h3>Change Password</h3>
@@ -105,10 +81,106 @@
   </div>
 </div>
 
-
 </body>
+<style>
+  body {
+    background-color: #041333 /* Replace with your desired background color */
+  }
+  header {
+      background-color: white;
+    }
+      section {
+        margin-top: 0; /* Remove margin top */
+      }
+
+      .product {
+        height: 450px;
+      }
+
+      .list-group {
+        color: white;
+      }
+
+      .list-group-item {
+        background-color: #white;
+      }
+      .list-group-item:hover {
+        background-color: #ebe2cb;
+        color: white;
+      }
+
+
+
+    /* Make profile image circular */
+    * {
+    color: white;
+
+}
+    img {
+    border-radius: 50%;
+    }
+
+    /* Style for Change Password button */
+    button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    /* Style for password change form */
+    form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+
+
+
+    input[type="password"] {
+    padding: 1px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+    margin-top: 1px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+      .custom {
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+      }
+</style>
 <script>
-   let sidebar = document.querySelector(".sidebar");
+function addToCart() {
+  const productId = document.getElementById('product-id').value;
+  const quantity = document.getElementById('quantity').value || 1;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/add-to-cart');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      window.location.href = '/cart';
+    } else {
+      console.error('Error adding item to cart:', xhr.statusText);
+      alert('Error adding item to cart');
+    }
+  };
+  xhr.send(JSON.stringify({productId, quantity}));
+}
+
+let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".sidebarBtn");
 sidebarBtn.onclick = function() {
   sidebar.classList.toggle("active");
@@ -130,65 +202,7 @@ var seeAllButton = document.getElementById("seeAllButton");
       seeAllButton.style.display = "none";
     });
   }
-          const showFormBtn = document.getElementById('show-form-btn');
-  const changePasswordForm = document.querySelector('.change-password-form');
 
-  showFormBtn.addEventListener('click', () => {
-    changePasswordForm.style.display = 'block';
-  });
- </script>
-     <style>
-         body {
-             display: flex;
-             flex-direction: column;
-             justify-content: center;
-             align-items: center;
-             background-color: #f2f2f2;
-             height: 100vh;
-         }
+</script>
 
-         /* CSS to style the profile picture */
-         .profile-pic {
-             border-radius: 50%;
-             width: 200px;
-             height: 200px;
-             object-fit: cover; /* This ensures that the image fills the entire circular container */
-         }
-
-         /* CSS to style the customer plan */
-         .customer-plan {
-             font-size: 24px;
-             margin-top: 20px;
-             margin-bottom: 20px;
-         }
-
-         /* CSS to style the change password form */
-         .change-password-form {
-             margin-top: 20px;
-         }
-         .change-password-form label {
-             display: block;
-             margin-bottom: 10px;
-         }
-         .change-password-form input[type="password"] {
-             padding: 5px;
-             margin-bottom: 10px;
-             border-radius: 5px;
-             border: 1px solid #ccc;
-         }
-         .change-password-form input[type="submit"] {
-             padding: 5px 10px;
-             background-color: #4CAF50;
-             color: white;
-             border-radius: 5px;
-             border: none;
-             cursor: pointer;
-         }
-               .custom {
-                 text-align: center;
-                 color: white;
-                 margin-top: 50px;
-               }
-     </style>
 </html>
-

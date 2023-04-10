@@ -319,29 +319,26 @@ window.addEventListener('beforeunload', showLoader);
                     </div>
             <div class="screen__content">
                 <a><img src="images/Screenshot_2023-01-08_215757-removebg-preview.png" height="100"> </a>
-                <form  action="/oauth" class="login" method = "POST">
-                    <p><h3>Log in</h3></p>
+<form action="/oauth" class="login" method="POST">
+  <p><h3>Log in</h3></p>
 
+  <div class="login__field">
+    <i class="login__icon fas fa-envelope"></i>
+    <input type="email" class="login__input" name="email" placeholder="Email" id="email" required>
+  </div>
 
-                    <div class="login__field">
+  <div class="login__field">
+    <i class="login__icon fas fa-lock"></i>
+    <input type="password" class="login__input" placeholder="Password" name="password" id="password" required>
+  </div>
 
-                        <i class="login__icon fas fa-user"></i>
-                        <input type="text" class="login__input" name="username" placeholder="User name / Email" id="username" required>
-                    </div>
-                    <div class="login__field">
-                        <i class="login__icon fas fa-lock"></i>
-                        <input type="password" class="login__input" placeholder="Password" name="password" id="password" required>
-                    </div>
-                    <h5 ><a href="/fog" class="fog_cs">Forgot Password?</a></h5>
-                     <% if (error) { %>
-                        <div class="error-message">
-                      </div>
-                     <% } %>
-                    <button  href="/oauth" class="button login__submit">
-                        <span class="button__text" type="submit" value="Login" ><a>Log In Now</a></span>
-                         <i  class="button__icon fas fa-chevron-right"></i>
-                    </button>
-                </form>
+  <h5><a href="/forgot-password" class="fog_cs">Forgot Password?</a></h5>
+  <button class="button login__submit" type="submit" value="Login">
+    <span class="button__text"><a>Log In Now</a></span>
+    <i class="button__icon fas fa-chevron-right"></i>
+  </button>
+</form>
+
                 <div class="social-login">
                     <h3>log in via</h3>
                     <div class="social-icons">

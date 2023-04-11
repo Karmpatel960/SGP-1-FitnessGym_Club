@@ -143,18 +143,16 @@ router.get('/auth/google' , passport.authenticate('google', { scope:
 // Auth Callback
 router.get( '/auth/callback',
 	passport.authenticate( 'google', {
-		successRedirect: '/userp',
+		successRedirect: '/auth/callback/success',
 		failureRedirect: '/auth/callback/failure'
 }));
 
-router.get('/userp' , (req , res) => {
-	res.render('UserPage');
-});
-// Success
+
 router.get('/auth/callback/success' , (req , res) => {
-//	if(!req.user)
-//		res.redirect('/auth/callback/failure');
-	res.render('UserPage');
+	if(!req.user)
+		res.redirect('/auth/callback/failure');
+		req.session.loggedin = true;
+	res.redirect('/home');
 });
 
 // failure

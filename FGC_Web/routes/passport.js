@@ -10,8 +10,8 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new GoogleStrategy({
-	clientID:"873557186995-36td1m1t3l9ub1qs6b2jl4ul1gav509h.apps.googleusercontent.com", // Your Credentials here.
-	clientSecret:"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", // Your Credentials here.
+	clientID:"8735571XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", // Your Credentials here.
+	clientSecret:"GOCSXXXXXXXXXXXXXXXXXXXXXXXXXX", // Your Credentials here.
 	callbackURL:"http://localhost:3000/auth/callback",
 	passReqToCallback:true
 },
@@ -21,8 +21,8 @@ function(request, accessToken, refreshToken, profile, done) {
 ));
 
 passport.use(new FacebookStrategy({
-    clientID: '8840207599385587',
-    clientSecret: '9ab8272097058065098e272b3c976bfc',
+    clientID: '8XXXXXXXXXXXXXXXXXXXXXXXXXX',
+    clientSecret: '9abXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
     callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -33,8 +33,8 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.use(new GitHubStrategy({
-    clientID: 'db7917eb573d031480cc',
-    clientSecret: '53bd99c1bff8afc2a9eafd145064cc42eed884ae',
+    clientID: 'db791XXXXXXXXXXXXXXXXXXX',
+    clientSecret: '53bd99XXXXXXXXXXXXXXXXXXXXX',
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {

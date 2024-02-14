@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  node-app:
+    build: .
+    ports:
+      - "3306:3306"
+    depends_on:
+      - mysql-db
+    environment:
+      NODE_ENV: production
+      MYSQL_HOST: mysql-db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: FGCpassword2023
+      MYSQL_DATABASE: your_database_name
+
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: FGCpassword2023
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: root
+      MYSQL_PASSWORD: FGCpassword2023
+    ports:
+      - "3307:3306"  # Change this line to use a different host port, for example, "3307:3306"
+

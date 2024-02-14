@@ -1,0 +1,21 @@
+# Use the official Node.js image as the base image
+FROM node:14
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy the package.json and package-lock.json first to take advantage of Docker caching
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm install
+
+# Copy the rest of the application files
+COPY . .
+
+# Expose the port that your Node.js app is listening on (if needed)
+# Replace 3000 with the actual port number your Node.js app listens on
+EXPOSE 3000
+
+# Start the Node.js app using the 'start' script defined in package.json
+CMD ["npm", "start"]

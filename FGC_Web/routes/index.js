@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 const mysql = require('mysql');
@@ -23,11 +24,14 @@ router.use(passport.session());
 
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'FGCpassword2023',
+  host: process.env.MYSQL_HOST || 'localhost',
+  user: process.env.MYSQL_USER || 'root',
+  port: process.env.MYSQL_PORT || 3000,
+  password: process.env.MYSQL_PASSWORD || 'FGCpassword2023',
+  database: process.env.MYSQL_DATABASE || 'your_database_name',
   connectionLimit: 10
 });
+
 connection.connect(function(err){
   if(err)
        throw err;

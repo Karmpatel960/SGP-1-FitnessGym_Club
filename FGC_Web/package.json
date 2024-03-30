@@ -17,6 +17,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "flash": "^1.1.0",
+    "fs": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
@@ -29,7 +30,9 @@
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-instagram": "^1.0.0",
+    "pg": "^8.11.3",
     "qrcode": "^1.5.1",
-    "twilio-chat": "^6.0.0"
+    "twilio-chat": "^6.0.0",
+    "url": "^0.11.3"
   }
 }

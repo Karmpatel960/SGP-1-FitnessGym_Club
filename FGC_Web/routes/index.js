@@ -1,7 +1,10 @@
 require('dotenv').config();
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
+//const mysql = require('mysql');
+const mysql = require('mysql2');
+
+const fs = require('fs'); 
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
@@ -29,7 +32,11 @@ var connection = mysql.createConnection({
   port: process.env.MYSQL_PORT || 3000,
   password: process.env.MYSQL_PASSWORD || 'FGCpassword2023',
   database: process.env.MYSQL_DATABASE || 'your_database_name',
-  connectionLimit: 10
+  connectionLimit: 10,
+  ssl: {
+    rejectUnauthorized: true,
+    ca: fs.readFileSync('./routes/ca.pem')
+  }
 });
 
 connection.connect(function(err){
@@ -38,8 +45,72 @@ connection.connect(function(err){
   console.log('Connection established sucessfully');
 });
 
+const sqlStatements = `
+    CREATE DATABASE IF NOT EXISTS loginuser;
+    USE loginuser;
 
+    DROP TABLE IF EXISTS \`cart\`;
+    CREATE TABLE \`cart\` (
+        \`id\` int NOT NULL AUTO_INCREMENT,
+        \`user_id\` int NOT NULL,
+        \`product_id\` int NOT NULL,
+        \`quantity\` int NOT NULL,
+        PRIMARY KEY (\`id\`),
+        KEY \`user_id\` (\`user_id\`),
+        KEY \`product_id\` (\`product_id\`),
+        CONSTRAINT \`cart_ibfk_1\` FOREIGN KEY (\`user_id\`) REFERENCES \`userdata\` (\`Username\`),
+        CONSTRAINT \`cart_ibfk_2\` FOREIGN KEY (\`product_id\`) REFERENCES \`productdata\` (\`id\`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+    DROP TABLE IF EXISTS \`cart_table\`;
+    CREATE TABLE \`cart_table\` (
+        \`id\` int NOT NULL AUTO_INCREMENT,
+        \`user_id\` int NOT NULL,
+        \`product_name\` varchar(255) NOT NULL,
+        \`quantity\` int NOT NULL,
+        \`created_at\` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (\`id\`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+    DROP TABLE IF EXISTS \`carttab\`;
+    CREATE TABLE \`carttab\` (
+        \`User_id\` int NOT NULL,
+        \`Product_name\` varchar(45) DEFAULT NULL,
+        \`quantity\` int NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+    DROP TABLE IF EXISTS \`productdata\`;
+    CREATE TABLE \`productdata\` (
+        \`id\` int NOT NULL AUTO_INCREMENT,
+        \`name\` varchar(50) NOT NULL,
+        \`price\` decimal(10,2) NOT NULL,
+        \`image_link\` varchar(255) NOT NULL,
+        \`description\` varchar(255) NOT NULL,
+        PRIMARY KEY (\`id\`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+    DROP TABLE IF EXISTS \`userdata\`;
+    CREATE TABLE \`userdata\` (
+        \`Username\` int NOT NULL,
+        \`syst\` varchar(45) NOT NULL,
+        \`Name\` varchar(45) NOT NULL,
+        \`Password\` varchar(45) NOT NULL,
+        \`Email\` varchar(45) NOT NULL,
+        PRIMARY KEY (\`Username\`,\`syst\`,\`Name\`,\`Password\`,\`Email\`),
+        UNIQUE KEY \`Username_UNIQUE\` (\`Username\`),
+        UNIQUE KEY \`Email_UNIQUE\` (\`Email\`),
+        UNIQUE KEY \`Password_UNIQUE\` (\`Password\`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+`;
+
+connection.query(sqlStatements, (err, results) => {
+    if (err) {
+        console.error('Error executing SQL statements:', err);
+    } else {
+        console.log('Database schema created successfully');
+    }
+    connection.end();
+});
 
 
 //// Define the OTP URI with the secret and issuer
@@ -116,16 +187,22 @@ router.post('/oauth', function(request, response) {
 
   if (email && password) {
     connection.query('SELECT * FROM myapp.users WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
-      if (results.length > 0) {
-          if (email === adminUsername && password === adminPassword) {
+      if (error) {
+        console.error("Error executing SQL query:", error);
+        response.redirect('/Login?error=Internal Server Error');
+        return;
+      }
+
+      if (results && results.length > 0) {
+        if (email === adminUsername && password === adminPassword) {
           request.session.loggedin = true;
           response.redirect('/admin');
-         } else {
+        } else {
           request.session.loggedin = true;
           request.session.userId = results[0].id;
           // Redirect to home page
           response.redirect('/home');
-          }
+        }
       } else {
         response.redirect('/Login?error=Invalid Email or Password!');
       }
@@ -133,9 +210,9 @@ router.post('/oauth', function(request, response) {
     });
   } else {
     response.redirect('/Login?error=Please enter Email and Password!');
-    response.end();
   }
 });
+
 
 
 
